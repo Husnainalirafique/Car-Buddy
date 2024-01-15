@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_splash_screen">#131313</color>
+
+    //status bar
+    <color name="color_status_bar">#121212</color>
+
+    //Text view and edit text
+    <color name="color_textview">@color/white</color>
+    <color name="color_edittext_background">#1F222A</color>
+
+    //Backgrounds
+    <color name="color_background">#121212</color>
+
+    //icons
+    <color name="color_icon">@color/white</color>
+
+    //chat voice player
+    <color name="color_voice_player_seekbar">@color/white</color>
+    <color name="color_voice_player_background">#408BB1D5</color>
+    <color name="color_voice_player_time_bg">#CE1C92FF</color>
+
+
+    //Chat image
+    <color name="color_chat_image_bg">#B94897E1</color>
+</resources>

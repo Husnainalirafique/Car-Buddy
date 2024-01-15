@@ -7,4 +7,33 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_primary">#1C92FF</color>
+
+    <color name="color_splash_screen">#FFFFFFFF</color>
+
+    //status bar
+    <color name="color_status_bar">@color/white</color>
+
+    //Text view and edit text
+    <color name="color_textview">@color/black</color>
+    <color name="color_edittext_background">#F4F5F7</color>
+    <color name="color_text_primary">#1C92FF</color>
+
+    //Backgrounds
+    <color name="color_background">@color/white</color>
+
+    //icons
+    <color name="color_icon">@color/black</color>
+
+    //Chat voice player
+    <color name="color_voice_player_seekbar">@color/black</color>
+    <color name="color_voice_player_background">#331C92FF</color>
+    <color name="color_voice_player_time_bg">#331C92FF</color>
+
+    //item chat image
+    <color name="color_chat_image_bg">#BE1C92FF</color>
+
+    //Item text chat
+    <color name="color_chat_text_bg">#1C92FF</color>
+
 </resources>

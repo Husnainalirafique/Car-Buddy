@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1002219259219",
+    "project_id": "car-buddy-e89b4",
+    "storage_bucket": "car-buddy-e89b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002219259219:android:db79769840c714811bcda6",
+        "android_client_info": {
+          "package_name": "com.example.carbuddy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv50wUUSem6Xfes2Tbcdyi9L23na8E0_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
