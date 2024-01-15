@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Car Buddy</string>
+    <string name="string_splash_name">Car Buddy</string>
 </resources>

@@ -2,7 +2,10 @@ package com.example.carbuddy.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.carbuddy.databinding.ActivityAuthBinding
+import com.example.carbuddy.utils.BackPressedExtensions
+import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
 import com.example.carbuddy.utils.StatusBarUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +20,13 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun inIt() {
+        backPressed()
+    }
 
+    private fun backPressed() {
+        goBackPressed {
+            finishAffinity()
+        }
     }
 
     override fun onDestroy() {
