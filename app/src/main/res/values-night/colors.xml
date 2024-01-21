@@ -14,6 +14,7 @@
 
     //icons
     <color name="color_icon">@color/white</color>
+    <color name="color_icon_profile_image_placeholder">#464648</color>
 
     //chat voice player
     <color name="color_voice_player_seekbar">@color/white</color>
@@ -23,4 +24,6 @@
 
     //Chat image
     <color name="color_chat_image_bg">#B94897E1</color>
+
+
 </resources>

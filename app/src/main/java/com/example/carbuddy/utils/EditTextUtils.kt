@@ -1,6 +1,7 @@
 package com.example.carbuddy.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
@@ -8,6 +9,7 @@ import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import com.example.carbuddy.R
 
 @SuppressLint("ClickableViewAccessibility")
@@ -40,16 +42,24 @@ fun setPasswordVisibilityToggle(editText: EditText, ) { editText.setOnTouchListe
     false
 } }
 
-//@SuppressLint("UseCompatLoadingForDrawables")
-//fun setFocusChangeBackground(context: Context, editText: EditText) {
-//    editText.setOnFocusChangeListener { _, hasFocus ->
-//        if (hasFocus) {
-//            editText.background = context.getDrawable(R.drawable.bg_editext_with_stroke)
-//        } else {
-//            editText.background = context.getDrawable(R.drawable.bg_edittext)
-//        }
-//    }
-//}
+@SuppressLint("UseCompatLoadingForDrawables")
+fun Fragment.setEditTextFocusChangeBackground(editText1: EditText,editText2: EditText? = null) {
+    editText1.setOnFocusChangeListener { _, hasFocus ->
+        if (hasFocus) {
+            editText1.background = requireContext().getDrawable(R.drawable.bg_editext_with_stroke)
+        } else {
+            editText1.background = requireContext().getDrawable(R.drawable.bg_edittext)
+        }
+    }
+
+    editText2?.setOnFocusChangeListener { _, hasFocus ->
+        if (hasFocus){
+            editText2.background = requireContext().getDrawable(R.drawable.bg_editext_with_stroke)
+        } else{
+            editText2.background = requireContext().getDrawable(R.drawable.bg_edittext)
+        }
+    }
+}
 
 fun editTextWatcherForChatButton(editText: EditText, sendBtn: View, voiceBtn: View){
     editText.addTextChangedListener(object : TextWatcher {
