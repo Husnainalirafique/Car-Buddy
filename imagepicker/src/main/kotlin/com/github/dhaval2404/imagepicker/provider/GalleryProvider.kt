@@ -16,6 +16,7 @@ import com.github.dhaval2404.imagepicker.util.IntentUtils
  * @version 1.0
  * @since 04 January 2019
  */
+@Suppress("DEPRECATION")
 class GalleryProvider(activity: ImagePickerActivity) :
     BaseProvider(activity) {
 

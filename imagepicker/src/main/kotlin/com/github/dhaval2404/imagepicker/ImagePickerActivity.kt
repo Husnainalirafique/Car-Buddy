@@ -21,6 +21,7 @@ import com.github.dhaval2404.imagepicker.util.FileUriUtils
  * @version 1.0
  * @since 04 January 2019
  */
+@Suppress("DEPRECATION")
 class ImagePickerActivity : AppCompatActivity() {
 
     companion object {
@@ -65,11 +66,9 @@ class ImagePickerActivity : AppCompatActivity() {
         mCompressionProvider = CompressionProvider(this)
 
         // Retrieve Image Provider
-        val provider: ImageProvider? =
-            intent?.getSerializableExtra(ImagePicker.EXTRA_IMAGE_PROVIDER) as ImageProvider?
 
         // Create Gallery/Camera Provider
-        when (provider) {
+        when (intent?.getSerializableExtra(ImagePicker.EXTRA_IMAGE_PROVIDER) as ImageProvider?) {
             ImageProvider.GALLERY -> {
                 mGalleryProvider = GalleryProvider(this)
                 // Pick Gallery Image

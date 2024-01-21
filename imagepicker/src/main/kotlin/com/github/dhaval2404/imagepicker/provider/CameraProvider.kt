@@ -22,6 +22,7 @@ import java.io.File
  * @version 1.0
  * @since 04 January 2019
  */
+@Suppress("DEPRECATION")
 class CameraProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
 
     companion object {

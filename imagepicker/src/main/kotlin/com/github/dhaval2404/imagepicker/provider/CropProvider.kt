@@ -21,6 +21,7 @@ import java.io.IOException
  * @version 1.0
  * @since 04 January 2019
  */
+@Suppress("DEPRECATION")
 class CropProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
 
     companion object {

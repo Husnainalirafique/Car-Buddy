@@ -17,6 +17,7 @@ import java.io.File
  * @version 1.0
  * @since 04 January 2019
  */
+@Suppress("DEPRECATION")
 open class ImagePicker {
 
     companion object {

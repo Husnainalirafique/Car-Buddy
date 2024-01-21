@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.github.dhaval2404.imagepicker.provider
 
 import android.annotation.SuppressLint
@@ -107,12 +109,14 @@ class CompressionProvider(activity: ImagePickerActivity) : BaseProvider(activity
     @SuppressLint("StaticFieldLeak")
     private fun startCompressionWorker(uri: Uri) {
         object : AsyncTask<Uri, Void, File>() {
+            @Deprecated("Deprecated in Java")
             override fun doInBackground(vararg params: Uri): File? {
                 // Perform operation in background
                 val file = FileUtil.getTempFile(this@CompressionProvider, params[0]) ?: return null
                 return startCompression(file)
             }
 
+            @Deprecated("Deprecated in Java")
             override fun onPostExecute(file: File?) {
                 super.onPostExecute(file)
                 if (file != null) {
