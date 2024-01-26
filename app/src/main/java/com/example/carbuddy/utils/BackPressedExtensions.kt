@@ -1,5 +1,6 @@
 package com.example.carbuddy.utils
 
+import android.app.Activity
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ object BackPressedExtensions {
             }
         })
     }
+
 
     fun Fragment.goBackPressed(callback: () -> Unit) {
         requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {

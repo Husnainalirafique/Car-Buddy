@@ -14,11 +14,20 @@
             android:id="@+id/action_logInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             app:popUpTo="@id/logInFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.carbuddy.ui.fragments.auth_fragments.signup.SignUpFragment"
         tools:layout="@layout/fragment_sign_up"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_authUserInformationFragment"
+            app:destination="@id/authUserInformationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authUserInformationFragment"
+        android:name="com.example.carbuddy.ui.fragments.auth_fragments.auth_info.AuthUserInformationFragment"
+        tools:layout="@layout/fragment_auth_user_information"
+        android:label="AuthUserInformationFragment" />
 </navigation>

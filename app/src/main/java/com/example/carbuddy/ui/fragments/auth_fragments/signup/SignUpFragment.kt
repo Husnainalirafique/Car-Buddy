@@ -32,7 +32,7 @@ class SignUpFragment :Fragment() {
             findNavController().popBackStack()
         }
         binding.btnSignUp.setOnClickListener {
-
+            findNavController().navigate(R.id.action_signUpFragment_to_authUserInformationFragment)
         }
     }
 

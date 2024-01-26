@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
 import com.example.carbuddy.databinding.FragmentLogInBinding
+import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
 import com.example.carbuddy.utils.Spanny
 import com.example.carbuddy.utils.setEditTextFocusChangeBackground
 import com.example.carbuddy.utils.setPasswordVisibilityToggle
@@ -25,6 +26,13 @@ class LogInFragment :Fragment() {
     private fun inIt() {
         setUpUI()
         setOnClickListeners()
+        backPressed()
+    }
+
+    private fun backPressed() {
+        goBackPressed {
+            requireActivity().finishAffinity()
+        }
     }
 
     private fun setOnClickListeners() {

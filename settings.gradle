@@ -16,7 +16,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Car Buddy"
 include ':app'
-
 include ':imagepicker'
 include ':ccp'
-include ':circularimageviewlib'
+include ':circleimageview'
