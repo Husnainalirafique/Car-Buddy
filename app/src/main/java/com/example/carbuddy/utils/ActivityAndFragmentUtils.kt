@@ -56,10 +56,17 @@ fun Context.toast(message: String) {
 }
 
 
-fun getColor(context: Context, colorId:Int): Int {
-    return context.resources.getColor(colorId,null)
+fun Activity.getColorFromId(colorId:Int): Int {
+    return this.resources.getColor(colorId,null)
 }
 
+fun Fragment.getColorFromId(colorId:Int): Int {
+    return requireContext().resources.getColor(colorId,null)
+}
+
+fun Context.getColorFromId(colorId:Int): Int {
+    return this.resources.getColor(colorId,null)
+}
 
 fun openAppSettings(activity: Activity) {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)

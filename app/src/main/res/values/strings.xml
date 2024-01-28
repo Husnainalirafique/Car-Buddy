@@ -16,6 +16,8 @@
     <string name="string_signIn">Sign In</string>
     <string name="string_or">OR</string>
     <string name="string_login_to_your_account">Login to your\nAccount</string>
+    <string name="string_no_email_error">Please enter email</string>
+    <string name="string_no_password_error">Please enter password</string>
 
     //Account setup
     <string name="string_fill_your_profile">Fill your Profile</string>

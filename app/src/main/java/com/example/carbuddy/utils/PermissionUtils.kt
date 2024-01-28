@@ -30,7 +30,7 @@ object PermissionUtils{
                 requestPermissions(activity, permissions, requestCode)
                 sharedPreferences.edit().putInt(PERMISSION_REQUEST_COUNT_KEY, ++count).apply()
             } else {
-                CustomDialogs.permissionAlertDialog(
+                Dialogs.permissionAlertDialog(
                     activity,
                     PERMISSION_ALERT_TEXT
                 ) { openAppSettings(activity) }
