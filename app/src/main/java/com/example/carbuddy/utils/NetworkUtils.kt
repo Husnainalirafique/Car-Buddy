@@ -3,9 +3,10 @@ package com.example.carbuddy.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 object NetworkUtils {
-    fun isNetworkAvailable(context: Context): Boolean {
+    fun isNetworkAvailable(@ApplicationContext context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         val networkCapabilities = connectivityManager.activeNetwork ?: return false

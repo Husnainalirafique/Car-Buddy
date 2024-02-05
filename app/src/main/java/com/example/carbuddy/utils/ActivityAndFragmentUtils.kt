@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION")
 package com.example.carbuddy.utils
 
 import android.app.Activity

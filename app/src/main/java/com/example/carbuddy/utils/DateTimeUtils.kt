@@ -14,8 +14,7 @@ object DateTimeUtils {
 
     fun formatCompleteDateAndTime(): String {
         val calendar = Calendar.getInstance()
-        val dateFormat =
-            SimpleDateFormat(Constants.DATE_TIME_FORMAT_MM_DD_YYYY_HH_MM_SS, Locale.getDefault())
+        val dateFormat = SimpleDateFormat(Constants.DATE_TIME_FORMAT_MM_DD_YYYY_HH_MM_SS, Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
 

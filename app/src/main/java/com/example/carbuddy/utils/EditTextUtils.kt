@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
@@ -85,4 +86,25 @@ fun editTextWatcherForChatButton(editText: EditText, sendBtn: View, voiceBtn: Vi
         }
     })
 }
+
+fun EditText.ifEmpty(errorMessage: String): Boolean {
+    val text = this.text?.toString()
+    if (text.isNullOrEmpty()) {
+        this.error = errorMessage
+        this.requestFocus()
+        return true
+    }
+    return false
+}
+
+fun EditText.ifEmailNotMatches(errorMessage: String):Boolean{
+    val email = this.text?.toString()
+    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        this.error = errorMessage
+        this.requestFocus()
+        return true
+    }
+    return false
+}
+
 

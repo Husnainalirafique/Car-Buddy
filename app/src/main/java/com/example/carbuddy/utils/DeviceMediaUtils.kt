@@ -28,7 +28,9 @@ fun extractSelectedUris(data: Intent?): ArrayList<Uri> {
 }
 
 fun Fragment.filterUrisByMimeType(uris: ArrayList<Uri>, mimeTypePrefix: String): List<Uri> {
-    return uris.filter { getMimeType(it).startsWith(mimeTypePrefix) }
+    return uris.filter {
+        getMimeType(it).startsWith(mimeTypePrefix)
+    }
 }
 
 fun Fragment.getMimeType(uri: Uri): String {

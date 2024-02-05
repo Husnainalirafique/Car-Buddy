@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 
 object Spanny {
-    fun spannableText(textView: TextView, fullText: String, clickableText: String,clickableTextColor: Int = Color.BLUE, onClickAction: () -> Unit, ) {
+    fun spannableText(textView: TextView, fullText: String, clickableText: String,clickableTextColor: Int = Color.BLUE,onClickAction: () -> Unit, ) {
         val spannableString = SpannableString(fullText)
 
         val startIndex = fullText.indexOf(clickableText)

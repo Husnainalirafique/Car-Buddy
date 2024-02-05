@@ -74,19 +74,6 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etNickName"
-                    style="@style/edittextStyle"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:hint="@string/string_nick_name"
-                    android:inputType="text"
-                    android:singleLine="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etFullName"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etEmail"
                     style="@style/edittextStyle"
                     android:layout_marginTop="@dimen/_15sdp"
@@ -97,7 +84,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etNickName"
+                    app:layout_constraintTop_toBottomOf="@+id/etFullName"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -119,13 +106,15 @@
                     android:id="@+id/countryCodePicker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:ccp_countryAutoDetectionPref="SIM_NETWORK_LOCALE"
                     app:ccpDialog_fastScroller_bubbleColor="@color/color_edittext_background"
                     app:ccpDialog_textColor="@color/color_textview"
                     app:ccp_arrowColor="@color/color_textview"
                     app:ccp_contentColor="@color/color_textview"
+                    app:ccp_hintExampleNumber="true"
                     app:ccp_showNameCode="false"
                     app:ccp_showPhoneCode="true"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_autoDetectCountry="true"
                     app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/phoneNumber" />

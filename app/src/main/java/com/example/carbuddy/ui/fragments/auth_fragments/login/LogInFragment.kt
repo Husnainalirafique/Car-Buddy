@@ -1,9 +1,11 @@
 package com.example.carbuddy.ui.fragments.auth_fragments.login
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -53,16 +55,28 @@ class LogInFragment :Fragment() {
         }
     }
 
-    private fun validateForm():Boolean{
-        if (binding.signInEmailEditText.text!!.isEmpty()){
-            binding.signInEmailEditText.error = resources.getString(R.string.string_no_email_error)
-            return false
+    private fun validateForm(): Boolean {
+        val emailEditText = binding.signInEmailEditText
+        val passwordEditText = binding.signInPasswordEditText
+
+        val email = emailEditText.text?.toString()
+        val password = passwordEditText.text?.toString()
+
+        return when {
+            email.isNullOrBlank() -> {
+                emailEditText.error = "Email is required!"
+                false
+            }
+            password.isNullOrBlank() -> {
+                passwordEditText.error = "Password is required!"
+                false
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                emailEditText.error = "Invalid email format"
+                false
+            }
+            else -> true
         }
-        if (binding.signInPasswordEditText.text!!.isEmpty()){
-            binding.signInPasswordEditText.error = resources.getString(R.string.string_no_password_error)
-            return false
-        }
-        return true
     }
 
     private fun backPressed() {

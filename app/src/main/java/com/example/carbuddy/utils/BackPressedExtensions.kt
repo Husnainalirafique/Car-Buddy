@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 object BackPressedExtensions {
-    fun AppCompatActivity.goBackPressed(callback: () -> Unit) {
+    inline fun AppCompatActivity.goBackPressed(crossinline callback: () -> Unit) {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 callback()
@@ -15,7 +15,7 @@ object BackPressedExtensions {
     }
 
 
-    fun Fragment.goBackPressed(callback: () -> Unit) {
+    inline fun Fragment.goBackPressed(crossinline callback: () -> Unit) {
         requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 callback()

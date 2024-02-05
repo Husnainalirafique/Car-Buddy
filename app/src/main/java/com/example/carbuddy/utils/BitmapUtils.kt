@@ -24,13 +24,12 @@ object BitmapUtils {
             view.draw(canvas)
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.d("ereceipt capture", "Failed to capture screenshot because:" + e.message)
         }
         return bitmap!!
     }
 
     fun saveBitmapToGallery(bitmap: Bitmap, context: Context) {
-        val fileName = "image_${System.currentTimeMillis()}.png"
+        val fileName = "image_${DateTimeUtils.formatCompleteDateAndTime()}.png"
 
         /*........ MetaData for media file ........*/
         val contentValues = ContentValues().apply {

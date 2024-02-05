@@ -22,7 +22,7 @@
     //Account setup
     <string name="string_fill_your_profile">Fill your Profile</string>
     <string name="string_full_name">Full Name</string>
-    <string name="string_nick_name">Nick Name</string>
+    <string name="string_nick_name">Nick Name (Optional)</string>
     <string name="string_date_of_birth">Date of Birth</string>
     <string name="string_phone_number">Phone Number</string>
     <string name="string_address">Address</string>

@@ -26,7 +26,7 @@ object Dialogs {
 //        }
 //    }
 
-    fun permissionAlertDialog(context: Context,message:String,callback:() -> Unit) {
+    inline fun permissionAlertDialog(context: Context,message:String,crossinline callback:() -> Unit) {
         val builder = AlertDialog.Builder(context)
         builder.apply{
             setMessage(message)
@@ -42,7 +42,7 @@ object Dialogs {
             show()
         }
     }
-    fun showDatePickerDialog(context: Context,onDateSelected:(date:Date) -> Unit) {
+    inline fun showDatePickerDialog(context: Context,crossinline onDateSelected:(date:Date) -> Unit) {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
