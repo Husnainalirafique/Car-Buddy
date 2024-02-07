@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
+import com.example.carbuddy.data.Email
+import com.example.carbuddy.data.Password
 import com.example.carbuddy.databinding.FragmentLogInBinding
 import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
 import com.example.carbuddy.utils.Spanny
@@ -18,6 +20,7 @@ import com.example.carbuddy.utils.setEditTextFocusChangeBackground
 import com.example.carbuddy.utils.setPasswordVisibilityToggle
 import com.example.carbuddy.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
 class LogInFragment :Fragment() {
@@ -33,6 +36,7 @@ class LogInFragment :Fragment() {
         setUpUI()
         setOnClickListeners()
         backPressed()
+        validateAndLogin()
     }
 
     private fun setOnClickListeners() {
@@ -43,7 +47,9 @@ class LogInFragment :Fragment() {
             findNavController().popBackStack()
         }
         binding.btnSignIn.setOnClickListener {
-            if (validateForm()) toast("Signed in")
+            val email = binding.signInEmailEditText.text.toString()
+            val password = binding.signInPasswordEditText.text.toString()
+            vm.validateInput(Email(email), Password(password))
         }
     }
 
@@ -55,29 +61,20 @@ class LogInFragment :Fragment() {
         }
     }
 
-    private fun validateForm(): Boolean {
-        val emailEditText = binding.signInEmailEditText
-        val passwordEditText = binding.signInPasswordEditText
-
-        val email = emailEditText.text?.toString()
-        val password = passwordEditText.text?.toString()
-
-        return when {
-            email.isNullOrBlank() -> {
-                emailEditText.error = "Email is required!"
-                false
+    private fun validateAndLogin(){
+        vm.validationResult.observe(requireActivity()){ (emailError,passwordError) ->
+            binding.signInEmailEditText.error = emailError.value
+            binding.signInPasswordEditText.error = passwordError.value
+            if (emailError.value == null && passwordError.value == null){
+                login()
             }
-            password.isNullOrBlank() -> {
-                passwordEditText.error = "Password is required!"
-                false
-            }
-            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                emailEditText.error = "Invalid email format"
-                false
-            }
-            else -> true
         }
     }
+
+    private fun login() {
+        toast("Loged in")
+    }
+
 
     private fun backPressed() {
         goBackPressed {
@@ -87,6 +84,7 @@ class LogInFragment :Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        vm.validationResult.removeObservers(requireActivity())
         binding.unbind()
     }
 }

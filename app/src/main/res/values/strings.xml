@@ -27,5 +27,9 @@
     <string name="string_phone_number">Phone Number</string>
     <string name="string_address">Address</string>
     <string name="string_continue">Continue</string>
+    <string name="string_menu_home">Home</string>
+    <string name="string_menu_inbox">Inbox</string>
+    <string name="string_menu_profile">Profile</string>
+    <string name="string_menu_booking">Booking</string>
 
 </resources>

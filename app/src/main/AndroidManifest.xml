@@ -28,6 +28,9 @@
         <activity
             android:name=".ui.activities.AuthActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.AfterAuthActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

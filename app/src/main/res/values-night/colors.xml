@@ -11,6 +11,8 @@
 
     //Backgrounds
     <color name="color_background">#121212</color>
+    <color name="color_service_card">#2d2d2d</color>
+    <color name="color_bottom_nav">#FC3E3C3C</color>
 
     //icons
     <color name="color_icon">@color/white</color>
