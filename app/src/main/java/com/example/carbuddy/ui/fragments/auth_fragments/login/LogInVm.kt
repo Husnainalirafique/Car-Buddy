@@ -3,17 +3,20 @@ package com.example.carbuddy.ui.fragments.auth_fragments.login
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carbuddy.data.Email
-import com.example.carbuddy.data.EmailError
-import com.example.carbuddy.data.Password
-import com.example.carbuddy.data.PasswordError
+import com.example.carbuddy.data.valueclasses.Email
+import com.example.carbuddy.data.valueclasses.EmailError
+import com.example.carbuddy.data.valueclasses.Password
+import com.example.carbuddy.data.valueclasses.PasswordError
 
 
 class LogInVm : ViewModel() {
     val validationResult = MutableLiveData<Pair<EmailError, PasswordError>>()
 
     fun validateInput(email: Email, password: Password) {
-        validationResult.value = Pair(EmailError(validateEmail(email.value)), PasswordError(validatePassword(password.value)))
+        validationResult.value = Pair(
+            EmailError(validateEmail(email.value)),
+            PasswordError(validatePassword(password.value))
+        )
     }
 
     private fun validateEmail(email: String): String? {

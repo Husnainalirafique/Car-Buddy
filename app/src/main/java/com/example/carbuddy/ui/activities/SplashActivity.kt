@@ -3,23 +3,27 @@ package com.example.carbuddy.ui.activities
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.lifecycleScope
-import com.example.carbuddy.R
 import com.example.carbuddy.databinding.ActivitySplashBinding
-import com.example.carbuddy.utils.StatusBarUtils
+import com.example.carbuddy.utils.dataBinding
 import com.example.carbuddy.utils.startActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-    private val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
+    private lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        inIt()
+    }
+
+    private fun inIt() {
         setUpSplash()
     }
+
 
     private fun setUpSplash() {
         lifecycleScope.launch {
@@ -28,9 +32,8 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.unbind()
-    }
 }
+
+
+
+

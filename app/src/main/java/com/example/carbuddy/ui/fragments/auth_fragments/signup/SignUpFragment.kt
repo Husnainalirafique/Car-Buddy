@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
-import com.example.carbuddy.data.Email
-import com.example.carbuddy.data.Password
+import com.example.carbuddy.data.valueclasses.Email
+import com.example.carbuddy.data.valueclasses.Password
 import com.example.carbuddy.databinding.FragmentSignUpBinding
 import com.example.carbuddy.ui.fragments.auth_fragments.login.LogInVm
 import com.example.carbuddy.utils.Spanny

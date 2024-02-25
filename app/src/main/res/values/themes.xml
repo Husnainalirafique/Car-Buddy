@@ -12,5 +12,6 @@
         <!-- Status bar color. -->
 <!--        <item name="android:statusBarColor">@color/color_status_bar</item>-->
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

@@ -9,9 +9,12 @@ import android.net.Uri
 import android.provider.Settings
 import android.util.Base64
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -55,16 +58,16 @@ fun Context.toast(message: String) {
 }
 
 
-fun Activity.getColorFromId(colorId:Int): Int {
-    return this.resources.getColor(colorId,null)
+fun Activity.getColorFromId(colorId: Int): Int {
+    return this.resources.getColor(colorId, null)
 }
 
-fun Fragment.getColorFromId(colorId:Int): Int {
-    return requireContext().resources.getColor(colorId,null)
+fun Fragment.getColorFromId(colorId: Int): Int {
+    return requireContext().resources.getColor(colorId, null)
 }
 
-fun Context.getColorFromId(colorId:Int): Int {
-    return this.resources.getColor(colorId,null)
+fun Context.getColorFromId(colorId: Int): Int {
+    return this.resources.getColor(colorId, null)
 }
 
 fun openAppSettings(activity: Activity) {
@@ -73,5 +76,21 @@ fun openAppSettings(activity: Activity) {
     intent.data = uri
     activity.startActivity(intent)
 }
+
+
+inline fun <reified T : ViewDataBinding> AppCompatActivity.dataBinding(
+    crossinline bindingInflater: (LayoutInflater) -> T): Lazy<T> =
+    lazy(LazyThreadSafetyMode.NONE) {
+        bindingInflater.invoke(layoutInflater).also {
+            setContentView(it.root)
+        }
+    }
+
+inline fun <reified T : ViewDataBinding> Fragment.dataBinding(
+    crossinline bindingInflater: (LayoutInflater) -> T
+): Lazy<T> = lazy(LazyThreadSafetyMode.NONE) {
+    bindingInflater.invoke(layoutInflater)
+}
+
 
 

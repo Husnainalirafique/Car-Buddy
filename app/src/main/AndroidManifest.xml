@@ -17,6 +17,12 @@
         android:theme="@style/Theme.CarBuddy"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.AuthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.AfterAuthActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ui.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -25,12 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activities.AuthActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.AfterAuthActivity"
-            android:exported="false"/>
     </application>
 
 </manifest>

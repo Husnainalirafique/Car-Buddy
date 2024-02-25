@@ -1,4 +1,4 @@
-package com.example.carbuddy.data
+package com.example.carbuddy.data.valueclasses
 
 @JvmInline
 value class Email(val value:String)

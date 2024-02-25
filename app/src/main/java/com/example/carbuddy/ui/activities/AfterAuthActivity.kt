@@ -10,20 +10,19 @@ import com.example.carbuddy.R
 import com.example.carbuddy.databinding.ActivityAfterAuthBinding
 import com.example.carbuddy.ui.fragments.after_auth_fragments.HomeFragment
 import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
-import com.example.carbuddy.utils.StatusBarUtils
 import com.example.carbuddy.utils.gone
-import com.example.carbuddy.utils.toast
 import com.example.carbuddy.utils.visible
-import kotlin.system.exitProcess
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AfterAuthActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityAfterAuthBinding.inflate(layoutInflater) }
-    private var navHostFragment: Fragment? = null
+    private lateinit var binding: ActivityAfterAuthBinding
+    private lateinit var navHostFragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusBarUtils.setStatusBarDarkMode(this)
+        binding = ActivityAfterAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.afterAuthActivityNavHostFragment)
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.afterAuthActivityNavHostFragment)!!
         inIt()
     }
 
@@ -33,8 +32,8 @@ class AfterAuthActivity : AppCompatActivity() {
     }
 
     private fun setUpBottomBar() {
-        navHostFragment?.let { binding.bottomNavigationView.setupWithNavController(it.findNavController()) }
-        navHostFragment?.findNavController()?.addOnDestinationChangedListener { _, destination, _ ->
+        binding.bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
+        navHostFragment.findNavController().addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.homeFragment || destination.id == R.id.bookingsFragment || destination.id == R.id.inboxFragment || destination.id == R.id.profileFragment) {
                 binding.bottomNavigationView.visible()
             } else {
@@ -45,7 +44,7 @@ class AfterAuthActivity : AppCompatActivity() {
 
     private fun handleBackPressed() {
         goBackPressed {
-            if (navHostFragment?.childFragmentManager?.fragments?.first() is HomeFragment) {
+            if (navHostFragment.childFragmentManager.fragments.first() is HomeFragment) {
                 finishAffinity()
             } else {
                 findNavController(R.id.afterAuthActivityNavHostFragment).popBackStack()
