@@ -33,6 +33,7 @@ class AfterAuthActivity : AppCompatActivity() {
 
     private fun setUpBottomBar() {
         binding.bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
+
         navHostFragment.findNavController().addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.homeFragment || destination.id == R.id.bookingsFragment || destination.id == R.id.inboxFragment || destination.id == R.id.profileFragment) {
                 binding.bottomNavigationView.visible()
@@ -47,7 +48,8 @@ class AfterAuthActivity : AppCompatActivity() {
             if (navHostFragment.childFragmentManager.fragments.first() is HomeFragment) {
                 finishAffinity()
             } else {
-                findNavController(R.id.afterAuthActivityNavHostFragment).popBackStack()
+//                findNavController(R.id.afterAuthActivityNavHostFragment).popBackStack()
+                navHostFragment.findNavController().popBackStack()
             }
         }
     }

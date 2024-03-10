@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
     private fun setUpSplash() {
         lifecycleScope.launch {
             delay(500)
-            startActivity(AfterAuthActivity::class.java)
+            startActivity(AuthActivity::class.java)
             finish()
         }
     }

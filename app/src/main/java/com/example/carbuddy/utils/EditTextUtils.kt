@@ -99,7 +99,7 @@ fun EditText.ifEmpty(errorMessage: String): Boolean {
 
 fun EditText.ifEmailNotMatches(errorMessage: String):Boolean{
     val email = this.text?.toString()
-    if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+    if (!email?.let { Patterns.EMAIL_ADDRESS.matcher(it).matches() }!!) {
         this.error = errorMessage
         this.requestFocus()
         return true

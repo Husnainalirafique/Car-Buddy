@@ -22,12 +22,12 @@
         tools:layout="@layout/fragment_sign_up"
         android:label="SignUpFragment" >
         <action
-            android:id="@+id/action_signUpFragment_to_authUserInformationFragment"
-            app:destination="@id/authUserInformationFragment" />
+            android:id="@+id/action_signUpFragment_to_fillProfileFragment"
+            app:destination="@id/fillProfileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/authUserInformationFragment"
-        android:name="com.example.carbuddy.ui.fragments.auth_fragments.auth_info.AuthUserInformationFragment"
-        tools:layout="@layout/fragment_auth_user_information"
+        android:id="@+id/fillProfileFragment"
+        android:name="com.example.carbuddy.ui.fragments.auth_fragments.auth_info.FillProfileFragment"
+        tools:layout="@layout/fragment_fill_profile"
         android:label="AuthUserInformationFragment" />
 </navigation>

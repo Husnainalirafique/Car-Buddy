@@ -1,6 +1,7 @@
 package com.example.carbuddy.ui.fragments.auth_fragments.signup
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,20 +9,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
-import com.example.carbuddy.data.valueclasses.Email
-import com.example.carbuddy.data.valueclasses.Password
 import com.example.carbuddy.databinding.FragmentSignUpBinding
+import com.example.carbuddy.ui.activities.AfterAuthActivity
 import com.example.carbuddy.ui.fragments.auth_fragments.login.LogInVm
 import com.example.carbuddy.utils.Spanny
 import com.example.carbuddy.utils.getColorFromId
 import com.example.carbuddy.utils.setEditTextFocusChangeBackground
 import com.example.carbuddy.utils.setPasswordVisibilityToggle
+import com.example.carbuddy.utils.startActivity
+import com.example.carbuddy.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
-    private val validationVm: LogInVm by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,33 +36,23 @@ class SignUpFragment : Fragment() {
     private fun inIt() {
         setOnClickListener()
         setUpUi()
-        validateAndSignUp()
     }
 
     private fun setOnClickListener() {
         binding.backArrow.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.btnSignUp.setOnClickListener {
-            val email = binding.signUpEmailEditText.text.toString()
-            val password = binding.signUpPasswordEditText.text.toString()
-            validationVm.validateInput(Email(email), Password(password))
-        }
-    }
-
-    private fun validateAndSignUp() {
-        validationVm.validationResult.observe(requireActivity()) { (emailError, passwordError) ->
-            binding.signUpEmailEditText.error = emailError.value
-            binding.signUpPasswordEditText.error = passwordError.value
-            if (emailError.value == null && passwordError.value == null) {
-                findNavController().navigate(R.id.action_signUpFragment_to_authUserInformationFragment)
+        binding.btnSignup.setOnClickListener {
+            if (isValid()) {
+//                findNavController().navigate(R.id.action_signUpFragment_to_fillProfileFragment)
+                startActivity(AfterAuthActivity::class.java)
             }
         }
     }
 
     private fun setUpUi() {
-        setPasswordVisibilityToggle(binding.signUpPasswordEditText)
-        setEditTextFocusChangeBackground(binding.signUpEmailEditText, binding.signUpPasswordEditText)
+        setPasswordVisibilityToggle(binding.etPassword)
+        setEditTextFocusChangeBackground(binding.etEmail, binding.etPassword)
         Spanny.spannableText(
             binding.textSignup,
             "Already have an account? Sign in",
@@ -73,9 +64,42 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    private fun isValid(): Boolean {
+        binding.etEmail.error = null
+        binding.etPassword.error = null
+        return when {
+            binding.etEmail.text.isNullOrEmpty() -> {
+                binding.etEmail.error = "Please fill!"
+                binding.etEmail.requestFocus()
+                false
+            }
+
+            binding.etPassword.text.isNullOrEmpty() -> {
+                binding.etPassword.error = "Please fill!"
+                binding.etPassword.requestFocus()
+                false
+            }
+
+            binding.etPassword.text.toString().length < 7 -> {
+                binding.etPassword.error = "Password must be at least 7 characters long"
+                binding.etPassword.requestFocus()
+                false
+            }
+
+            !Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text.toString()).matches() -> {
+                binding.etEmail.error = "Invalid email pattern"
+                binding.etEmail.requestFocus()
+                false
+            }
+
+            else -> {
+                true
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        validationVm.validationResult.removeObservers(requireActivity())
         binding.unbind()
     }
 }

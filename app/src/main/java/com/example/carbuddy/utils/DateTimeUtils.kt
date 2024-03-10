@@ -21,8 +21,4 @@ object DateTimeUtils {
     fun formatDateOfBirth(dateStamp: Long): String =
         SimpleDateFormat(Constants.DATE_FORMAT_MMM_DD_YYYY, Locale.getDefault()).format(dateStamp)
 
-    fun formatDateOfBirth(selectedDate: Date): String {
-        val dateFormat = SimpleDateFormat(Constants.DATE_FORMAT_MMM_DD_YYYY, Locale.getDefault())
-        return dateFormat.format(selectedDate)
-    }
 }

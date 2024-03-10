@@ -20,7 +20,7 @@
     <color name="color_text_primary">#1C92FF</color>
 
     //Backgrounds
-    <color name="color_background">@color/white</color>
+    <color name="color_background">#FAFAFD</color>
     <color name="color_service_card">#EAE3E3</color>
     <color name="color_bottom_nav">#DDEAE3E3</color>
 

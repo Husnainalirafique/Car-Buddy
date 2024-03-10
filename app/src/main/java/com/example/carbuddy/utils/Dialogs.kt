@@ -3,6 +3,9 @@ package com.example.carbuddy.utils
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
 
@@ -42,20 +45,22 @@ object Dialogs {
             show()
         }
     }
-    inline fun showDatePickerDialog(context: Context,crossinline onDateSelected:(date:Date) -> Unit) {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(context, { _, selectedYear, selectedMonth, selectedDay ->
-                val selectedDate = Calendar.getInstance()
-                selectedDate.set(selectedYear, selectedMonth, selectedDay)
-                val date = selectedDate.time
-                onDateSelected.invoke(date)
-            }, year, month, day
-        )
-        datePickerDialog.show()
+    fun showMaterialDatePickerDialog(
+        fragmentManager: FragmentManager,
+        onDateSelected: (String) -> Unit
+    ) {
+
+        val picker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select Date")
+            .build()
+
+        picker.addOnPositiveButtonClickListener {
+            onDateSelected(picker.headerText)
+        }
+
+        picker.show(fragmentManager, "DatePicker")
     }
+
 
 }
