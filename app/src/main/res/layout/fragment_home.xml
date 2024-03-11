@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_background"
-        tools:context=".ui.fragments.after_auth_fragments.HomeFragment">
+        tools:context=".ui.fragments.home.HomeFragment">
 
 
 

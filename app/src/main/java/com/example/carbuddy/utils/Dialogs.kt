@@ -46,20 +46,24 @@ object Dialogs {
         }
     }
 
-    fun showMaterialDatePickerDialog(
-        fragmentManager: FragmentManager,
-        onDateSelected: (String) -> Unit
+    inline fun showDatePickerDialog(
+        context: Context,
+        crossinline onDateSelected: (date: Date) -> Unit
     ) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val picker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select Date")
-            .build()
-
-        picker.addOnPositiveButtonClickListener {
-            onDateSelected(picker.headerText)
-        }
-
-        picker.show(fragmentManager, "DatePicker")
+        val datePickerDialog = DatePickerDialog(
+            context, { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(selectedYear, selectedMonth, selectedDay)
+                val date = selectedDate.time
+                onDateSelected.invoke(date)
+            }, year, month, day
+        )
+        datePickerDialog.show()
     }
 
 

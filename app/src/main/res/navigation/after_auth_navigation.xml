@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.carbuddy.ui.fragments.after_auth_fragments.HomeFragment"
+        android:name="com.example.carbuddy.ui.fragments.home.HomeFragment"
         tools:layout="@layout/fragment_home"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/bookingsFragment"
-        android:name="com.example.carbuddy.ui.fragments.after_auth_fragments.BookingsFragment"
+        android:name="com.example.carbuddy.ui.fragments.booking.BookingsFragment"
         android:label="fragment_bookings"
         tools:layout="@layout/fragment_bookings" />
     <fragment
         android:id="@+id/inboxFragment"
-        android:name="com.example.carbuddy.ui.fragments.after_auth_fragments.InboxFragment"
+        android:name="com.example.carbuddy.ui.fragments.inbox.InboxFragment"
         android:label="fragment_inbox"
         tools:layout="@layout/fragment_inbox" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.carbuddy.ui.fragments.after_auth_fragments.ProfileFragment"
+        android:name="com.example.carbuddy.ui.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

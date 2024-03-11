@@ -2,6 +2,8 @@ package com.example.carbuddy.utils
 
 object Constants {
     const val ROOM_DB_NAME = "roomDb"
+    const val KEY_EMAIL = "userEmail"
+    const val KEY_PASSWORD = "userPassword"
 
     /*........ Date/Time Format Patterns ........*/
     const val DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd" // Four-digit year, two-digit month, and two-digit day (e.g., "2024-01-28").

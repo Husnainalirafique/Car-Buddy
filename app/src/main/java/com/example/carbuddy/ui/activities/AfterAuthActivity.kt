@@ -3,12 +3,11 @@ package com.example.carbuddy.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.carbuddy.R
 import com.example.carbuddy.databinding.ActivityAfterAuthBinding
-import com.example.carbuddy.ui.fragments.after_auth_fragments.HomeFragment
+import com.example.carbuddy.ui.fragments.home.HomeFragment
 import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
 import com.example.carbuddy.utils.gone
 import com.example.carbuddy.utils.visible

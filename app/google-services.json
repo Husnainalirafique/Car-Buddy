@@ -12,7 +12,20 @@
           "package_name": "com.example.carbuddy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1002219259219-srb15le75laoelm4aond0ptt1isgodj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carbuddy",
+            "certificate_hash": "50efe5fb8a13b91627e6793acd283e506d5c32a4"
+          }
+        },
+        {
+          "client_id": "1002219259219-n29vfqirogodo9l1k47ru5k5k06rctjh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCv50wUUSem6Xfes2Tbcdyi9L23na8E0_I"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002219259219-n29vfqirogodo9l1k47ru5k5k06rctjh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

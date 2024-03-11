@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.carbuddy.ui.fragments.auth_fragments.login.LogInFragment"
+        android:name="com.example.carbuddy.ui.fragments.auth.login.LogInFragment"
         tools:layout="@layout/fragment_log_in"
         android:label="LogInFragment" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.carbuddy.ui.fragments.auth_fragments.signup.SignUpFragment"
+        android:name="com.example.carbuddy.ui.fragments.auth.signup.SignUpFragment"
         tools:layout="@layout/fragment_sign_up"
         android:label="SignUpFragment" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/fillProfileFragment"
-        android:name="com.example.carbuddy.ui.fragments.auth_fragments.auth_info.FillProfileFragment"
+        android:name="com.example.carbuddy.ui.fragments.auth.auth_info.FillProfileFragment"
         tools:layout="@layout/fragment_fill_profile"
         android:label="AuthUserInformationFragment" />
 </navigation>
