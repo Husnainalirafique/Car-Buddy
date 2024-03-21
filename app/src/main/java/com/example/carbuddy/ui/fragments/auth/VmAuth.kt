@@ -1,11 +1,14 @@
 package com.example.carbuddy.ui.fragments.auth
 
 import android.content.Intent
+import android.graphics.ColorSpace.Model
 import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.carbuddy.data.models.ModelUser
+import com.example.carbuddy.preferences.PreferenceManager
 import com.example.carbuddy.utils.DataState
 import com.example.carbuddy.utils.DateTimeUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -17,9 +20,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -29,6 +34,7 @@ class VmAuth @Inject constructor(
     private val db: FirebaseFirestore,
     private val gso: GoogleSignInClient,
     private val storage: StorageReference,
+    private val preferenceManager: PreferenceManager
 ) : ViewModel() {
 
     private val _signUpStatus = MutableLiveData<DataState<Nothing>>()
@@ -37,6 +43,8 @@ class VmAuth @Inject constructor(
     private val _loginStatus = MutableLiveData<DataState<Nothing>>()
     val loginStatus: LiveData<DataState<Nothing>> = _loginStatus
 
+
+    //Signup flow
     suspend fun signUpWithEmailPass(user: ModelUser) {
         withContext(Dispatchers.Main) { _signUpStatus.value = DataState.Loading }
         auth.createUserWithEmailAndPassword(user.email, user.password)
@@ -72,6 +80,7 @@ class VmAuth @Inject constructor(
     private fun addUserToDb(user: ModelUser) {
         db.collection("users").document(auth.currentUser?.uid!!).set(user)
             .addOnSuccessListener {
+                preferenceManager.saveUserData(user)
                 _signUpStatus.value = DataState.Success()
             }
             .addOnFailureListener {
@@ -79,10 +88,16 @@ class VmAuth @Inject constructor(
             }
     }
 
+
+    //Login flow with email and password
     suspend fun loginWithEmailPass(email: String, password: String) {
         withContext(Dispatchers.Main) { _loginStatus.value = DataState.Loading }
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
+                val user = getUserFromDb()
+                if (user != null) {
+                    preferenceManager.saveUserData(user)
+                }
                 _loginStatus.value = DataState.Success()
             }
             .addOnFailureListener { exception ->
@@ -94,6 +109,20 @@ class VmAuth @Inject constructor(
             }
     }
 
+    private fun getUserFromDb(): ModelUser? {
+        var user: ModelUser? = null
+        db.collection("users").document(auth.currentUser?.uid!!)
+            .get()
+            .addOnSuccessListener {
+                user = it.toObject(ModelUser::class.java)
+            }
+            .addOnFailureListener {
+                _loginStatus.value = DataState.Error(it.message!!)
+            }
+        return user
+    }
+
+    //Login flow with google
     fun signInWithGoogle(onIntentReady: (Intent) -> Unit) {
         _loginStatus.value = DataState.Loading
         val signInIntent = gso.signInIntent

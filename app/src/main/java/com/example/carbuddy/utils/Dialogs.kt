@@ -2,8 +2,13 @@ package com.example.carbuddy.utils
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
 import androidx.fragment.app.FragmentManager
+import com.example.carbuddy.databinding.DialogLogoutBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.time.LocalDate
 import java.util.Calendar
@@ -11,23 +16,27 @@ import java.util.Date
 
 object Dialogs {
 
-//    fun showProfileDoneDialog(
-//        context: Context,
-//        inflater: LayoutInflater,
-//        setProfileImgCallback:() -> Unit
-//    ) {
-//        val dialog = Dialog(context)
-//        val binding = LayoutCustomDialogProfileDoneBinding.inflate(inflater, null, false)
-//        dialog.apply {
-//            setContentView(binding.root)
-//            setCancelable(true)
-//            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//            binding.profileDoneDialogImageView.setOnClickListener {
-//                setProfileImgCallback.invoke()
-//            }
-//            show()
-//        }
-//    }
+    fun logoutDialog(
+        context: Context,
+        inflater: LayoutInflater,
+        logout: () -> Unit
+    ) {
+        val dialog = Dialog(context)
+        val binding = DialogLogoutBinding.inflate(inflater, null, false)
+        dialog.apply {
+            setContentView(binding.root)
+            setCancelable(true)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            binding.btnYes.setOnClickListener {
+                logout.invoke()
+                dismiss()
+            }
+            binding.btnNo.setOnClickListener {
+                dismiss()
+            }
+            show()
+        }
+    }
 
     inline fun permissionAlertDialog(context: Context,message:String,crossinline callback:() -> Unit) {
         val builder = AlertDialog.Builder(context)

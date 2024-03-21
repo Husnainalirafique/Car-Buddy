@@ -1,4 +1,4 @@
-package com.example.carbuddy.ui.fragments.auth.auth_info
+package com.example.carbuddy.ui.fragments.auth.fillprofile
 
 import android.app.Activity
 import android.net.Uri
@@ -141,6 +141,7 @@ class FillProfileFragment : Fragment() {
             }
         }
 
+
     private fun setUpImagePicker() {
         ImagePicker.with(requireActivity())
             .crop()
@@ -148,6 +149,7 @@ class FillProfileFragment : Fragment() {
                 launcherForImagePicker.launch(it)
             }
     }
+
 
     private fun validateForm(): Boolean {
         val fullNameEditText = binding.etFullName

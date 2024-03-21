@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/fillProfileFragment"
-        android:name="com.example.carbuddy.ui.fragments.auth.auth_info.FillProfileFragment"
+        android:name="com.example.carbuddy.ui.fragments.auth.fillprofile.FillProfileFragment"
         tools:layout="@layout/fragment_fill_profile"
         android:label="AuthUserInformationFragment" />
 </navigation>

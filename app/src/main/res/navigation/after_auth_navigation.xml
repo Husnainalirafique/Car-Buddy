@@ -24,5 +24,22 @@
         android:id="@+id/profileFragment"
         android:name="com.example.carbuddy.ui.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myVehicleFragment"
+            app:destination="@id/myVehicleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.carbuddy.ui.fragments.profile.editprofile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/myVehicleFragment"
+        android:name="com.example.carbuddy.ui.fragments.profile.myvehicles.MyVehicleFragment"
+        android:label="fragment_my_vehicle"
+        tools:layout="@layout/fragment_my_vehicle" />
 </navigation>

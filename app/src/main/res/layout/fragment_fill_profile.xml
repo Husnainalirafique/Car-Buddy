@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,7 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.auth.auth_info.FillProfileFragment">
+        android:background="@color/color_background"
+        tools:context=".ui.fragments.auth.fillprofile.FillProfileFragment">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,6 +83,7 @@
                     android:hint="@string/string_email"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.4"
                     app:layout_constraintStart_toStartOf="parent"
@@ -91,12 +94,12 @@
                     android:id="@+id/etDateOfBirth"
                     style="@style/edittextStyle"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:cursorVisible="false"
                     android:drawableEnd="@drawable/icon_calendar"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/string_date_of_birth"
                     android:inputType="none"
                     android:singleLine="true"
-                    android:cursorVisible="false"
-                    android:focusableInTouchMode="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/etEmail"
@@ -109,12 +112,12 @@
                     app:ccpDialog_fastScroller_bubbleColor="@color/color_edittext_background"
                     app:ccpDialog_textColor="@color/color_textview"
                     app:ccp_arrowColor="@color/color_textview"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_autoDetectLanguage="true"
                     app:ccp_contentColor="@color/color_textview"
                     app:ccp_hintExampleNumber="true"
                     app:ccp_showNameCode="false"
                     app:ccp_showPhoneCode="true"
-                    app:ccp_autoDetectLanguage="true"
-                    app:ccp_autoDetectCountry="true"
                     app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/phoneNumber" />
@@ -155,9 +158,11 @@
                     android:text="@string/string_continue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etAddress"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/etAddress" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.core.widget.NestedScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
