@@ -5,18 +5,46 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
+import com.example.carbuddy.data.models.ModelUser
 import com.example.carbuddy.databinding.FragmentEditProfileBinding
+import com.example.carbuddy.preferences.PreferenceManager
+import com.example.carbuddy.ui.fragments.profile.VmProfile
+import com.example.carbuddy.utils.DataState
 import com.example.carbuddy.utils.DateTimeUtils
 import com.example.carbuddy.utils.Dialogs
+import com.example.carbuddy.utils.ProgressDialogUtil.dismissProgressDialog
+import com.example.carbuddy.utils.ProgressDialogUtil.showProgressDialog
 import com.example.carbuddy.utils.ifEmpty
 import com.example.carbuddy.utils.toast
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class EditProfileFragment : Fragment() {
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
     private val ccp by lazy { binding.countryCodePicker }
+
+    //Pref
+    @Inject
+    lateinit var preferenceManager: PreferenceManager
+
+    //Views
+    private lateinit var etFullName: EditText
+    private lateinit var etDob: EditText
+    private lateinit var etPhoneNum: EditText
+    private lateinit var etAddress: EditText
+    private lateinit var profileImgUri: String
+    private lateinit var userEmail: String
+    private lateinit var userPassword: String
+
+    //view model
+    private val vmProfile: VmProfile by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +57,18 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun inIt() {
-        ccp.registerCarrierNumberEditText(binding.phoneNumber)
+        inItViews()
+        getUserFromPrefAndSet()
         setOnClickListener()
+        setUpObserver()
+    }
+
+    private fun inItViews() {
+        ccp.registerCarrierNumberEditText(binding.phoneNumber)
+        etFullName = binding.etFullName
+        etDob = binding.etDateOfBirth
+        etPhoneNum = binding.phoneNumber
+        etAddress = binding.etAddress
     }
 
     private fun setOnClickListener() {
@@ -46,7 +84,58 @@ class EditProfileFragment : Fragment() {
 
         binding.btnUpdate.setOnClickListener {
             if (validateForm()) {
+                updateUser()
+            }
+        }
+    }
 
+    private fun updateUser() {
+        val fullName = etFullName.text.toString().trim()
+        val dateOfBirth = etDob.text.toString().trim()
+        val phoneNumber = etPhoneNum.text.toString().trim()
+        val address = etAddress.text.toString().trim()
+        val user = ModelUser(
+            userEmail,
+            userPassword,
+            fullName,
+            dateOfBirth,
+            phoneNumber,
+            address,
+            profileImgUri
+        )
+        vmProfile.updateUser(user)
+    }
+
+    private fun getUserFromPrefAndSet() {
+        val user = preferenceManager.getUserData()
+        user?.let {
+            etFullName.setText(it.fullName)
+            etDob.setText(it.dob)
+            etPhoneNum.setText(it.phoneNumber)
+            etAddress.setText(it.address)
+            this.profileImgUri = it.profileImageUri
+            this.userEmail = it.email
+            this.userPassword = it.password
+        }
+    }
+
+    private fun setUpObserver() {
+        vmProfile.updateStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                is DataState.Success -> {
+                    toast("Updated")
+                    findNavController().popBackStack()
+                    dismissProgressDialog()
+                }
+
+                is DataState.Error -> {
+                    toast(it.errorMessage)
+                    dismissProgressDialog()
+                }
+
+                is DataState.Loading -> {
+                    showProgressDialog()
+                }
             }
         }
     }
@@ -71,11 +160,6 @@ class EditProfileFragment : Fragment() {
             }
 
             phoneNumberEditText.ifEmpty("Phone number is required") -> {
-                false
-            }
-
-            !ccp.isValidFullNumber -> {
-                toast("Invalid phone number for ${ccp.selectedCountryName}")
                 false
             }
 

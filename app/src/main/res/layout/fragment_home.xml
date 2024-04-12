@@ -20,9 +20,18 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img"
+            android:src="@drawable/logo_profile_pic_placeholder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/pgProfileImage"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgUser"
+            app:layout_constraintEnd_toEndOf="@+id/imgUser"
+            app:layout_constraintStart_toStartOf="@+id/imgUser"
+            app:layout_constraintTop_toTopOf="@+id/imgUser" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvHey"
@@ -44,7 +53,6 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_2sdp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="Husnain Rafique"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toEndOf="@+id/imgUser"
@@ -59,49 +67,36 @@
             app:layout_constraintTop_toTopOf="@+id/imgUser"
             app:srcCompat="@drawable/icon_bookmark" />
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:hint="Search by city"
-            app:boxStrokeColor="@color/color_primary"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/bg_edittext"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search (e.g painter, name)"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgUser">
-
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/tvAutoComplete"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:drawableStart="@drawable/icon_search"
-                android:drawablePadding="@dimen/_10sdp"
-                android:focusable="false"
-                android:inputType="none"
-                android:paddingStart="15dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/imgUser"
+            app:searchIcon="@drawable/icon_search" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:fontFamily="@font/open_sans_semi_bold"
+            android:fontFamily="@font/popins_bold"
             android:text="Find Near You"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnMechanics"
             android:layout_width="@dimen/_55sdp"
             android:layout_height="@dimen/_55sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/bg_services_round"
             app:layout_constraintEnd_toStartOf="@+id/btnFuel"
             app:layout_constraintHorizontal_bias="0.5"
@@ -200,7 +195,7 @@
             android:id="@+id/view6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="#A1ADACAC"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -211,12 +206,24 @@
             android:id="@+id/appCompatTextView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_semi_bold"
+            android:fontFamily="@font/popins_bold"
             android:text="Services"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHomeServices"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_2sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_service"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

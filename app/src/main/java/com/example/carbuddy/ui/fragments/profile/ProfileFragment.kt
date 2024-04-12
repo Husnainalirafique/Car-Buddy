@@ -1,19 +1,27 @@
 package com.example.carbuddy.ui.fragments.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
 import com.example.carbuddy.databinding.FragmentProfileBinding
 import com.example.carbuddy.preferences.PreferenceManager
 import com.example.carbuddy.ui.activities.AuthActivity
+import com.example.carbuddy.utils.DataState
 import com.example.carbuddy.utils.Dialogs
 import com.example.carbuddy.utils.Glide
+import com.example.carbuddy.utils.ProgressDialogUtil.dismissProgressDialog
+import com.example.carbuddy.utils.ProgressDialogUtil.showProgressDialog
+import com.example.carbuddy.utils.gone
 import com.example.carbuddy.utils.startActivity
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.example.carbuddy.utils.toast
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -25,9 +33,8 @@ class ProfileFragment : Fragment() {
     @Inject
     lateinit var auth: FirebaseAuth
     @Inject
-    lateinit var gso: GoogleSignInClient
-    @Inject
     lateinit var preferenceManager: PreferenceManager
+    private val vmProfile: VmProfile by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +49,7 @@ class ProfileFragment : Fragment() {
     private fun inIt() {
         setUserDataToViews()
         setOnClickListener()
+        setUpObserver()
     }
 
     private fun setOnClickListener() {
@@ -56,16 +64,17 @@ class ProfileFragment : Fragment() {
         binding.btnMyCars.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_myVehicleFragment)
         }
+
+        binding.btnPickPhoto.setOnClickListener {
+            openPhotoPicker()
+        }
     }
 
     private fun logOut() {
         Dialogs.logoutDialog(requireContext(), layoutInflater) {
-            gso.signOut().addOnSuccessListener {
-                auth.signOut()
-                startActivity(AuthActivity::class.java)
-                requireActivity().finish()
-
-            }
+            auth.signOut()
+            startActivity(AuthActivity::class.java)
+            requireActivity().finish()
         }
     }
 
@@ -74,8 +83,47 @@ class ProfileFragment : Fragment() {
         if (user != null) {
             binding.tvUserName.text = user.fullName
             binding.tvUserEmail.text = user.email
-            Glide.loadImage(requireContext(), user.profileImageUri, binding.imgProfilePic)
+            Glide.loadImageWithListener(
+                requireContext(),
+                user.profileImageUri,
+                binding.imgProfilePic
+            ) {
+                binding.pgProfileImage.gone()
+            }
         }
+    }
+
+    private fun setUpObserver() {
+        vmProfile.userPicUpdate.observe(viewLifecycleOwner) {
+            when (it) {
+                is DataState.Success -> {
+                    dismissProgressDialog()
+                }
+
+                is DataState.Error -> {
+                    toast(it.errorMessage)
+                    dismissProgressDialog()
+                }
+
+                is DataState.Loading -> {
+                    showProgressDialog()
+                }
+            }
+        }
+    }
+
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            if (uri != null) {
+                binding.imgProfilePic.setImageURI(uri)
+                vmProfile.updatePic(uri)
+            } else {
+                Log.d("PhotoPicker", "No media selected")
+            }
+        }
+
+    private fun openPhotoPicker() {
+        pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
     override fun onDestroyView() {

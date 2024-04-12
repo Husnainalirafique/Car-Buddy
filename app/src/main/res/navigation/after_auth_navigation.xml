@@ -41,5 +41,14 @@
         android:id="@+id/myVehicleFragment"
         android:name="com.example.carbuddy.ui.fragments.profile.myvehicles.MyVehicleFragment"
         android:label="fragment_my_vehicle"
-        tools:layout="@layout/fragment_my_vehicle" />
+        tools:layout="@layout/fragment_my_vehicle">
+        <action
+            android:id="@+id/action_myVehicleFragment_to_addVehicleFragment"
+            app:destination="@id/addVehicleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addVehicleFragment"
+        android:name="com.example.carbuddy.ui.fragments.profile.myvehicles.AddVehicleFragment"
+        android:label="fragment_add_vehicle"
+        tools:layout="@layout/fragment_add_vehicle" />
 </navigation>

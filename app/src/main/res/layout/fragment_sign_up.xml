@@ -60,7 +60,7 @@
                     style="@style/edittextStyle"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:hint="@string/string_hint_email"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:singleLine="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

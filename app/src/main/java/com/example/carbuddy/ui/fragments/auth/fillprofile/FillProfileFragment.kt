@@ -145,6 +145,7 @@ class FillProfileFragment : Fragment() {
     private fun setUpImagePicker() {
         ImagePicker.with(requireActivity())
             .crop()
+            .compress(500)
             .createIntent {
                 launcherForImagePicker.launch(it)
             }

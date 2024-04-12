@@ -20,8 +20,8 @@ class PreferenceManager @Inject constructor(@ApplicationContext private val cont
 
     private val gson = Gson()
 
-    fun saveUserData(student: ModelUser) {
-        val json = gson.toJson(student)
+    fun saveUserData(user: ModelUser) {
+        val json = gson.toJson(user)
         myPref.edit().putString(KEY_USER, json).apply()
     }
 

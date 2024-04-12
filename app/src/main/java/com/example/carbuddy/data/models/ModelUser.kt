@@ -7,7 +7,8 @@ data class ModelUser(
     val dob: String,
     val phoneNumber: String,
     val address: String,
-    var profileImageUri: String
+    var profileImageUri: String,
+    var docId: String = ""
 ) {
     constructor() : this("", "", "", "", "", "", "")
 }
