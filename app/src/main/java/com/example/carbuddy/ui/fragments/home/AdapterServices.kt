@@ -22,6 +22,12 @@ class AdapterServices(private val items: List<ModelService>) :
         holder.bind(data)
     }
 
+    private var itemClickListener: ((ModelService) -> Unit)? = null
+
+    fun itemClickListener(listener: (ModelService) -> Unit) {
+        itemClickListener = listener
+    }
+
     inner class ViewHolder(val binding: ItemServiceBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: ModelService) {
@@ -29,6 +35,10 @@ class AdapterServices(private val items: List<ModelService>) :
             binding.tvDistance.text = data.distanceToProvider
             binding.tvSpeciality.text = data.specialityOfProvider
             binding.imgServiceProvider.setImageResource(data.imgProvider)
+
+            itemView.setOnClickListener {
+                itemClickListener?.invoke(data)
+            }
         }
     }
 

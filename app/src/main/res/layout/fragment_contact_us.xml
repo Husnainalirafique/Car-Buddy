@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/_20sdp"
+    android:paddingTop="@dimen/_32sdp"
+    tools:context=".ui.fragments.profile.contactUs.ContactUsFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/backArrow"
+        android:layout_width="23dp"
+        android:layout_height="17dp"
+        android:src="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:fontFamily="@font/popins_bold"
+        android:text="Contact Us"
+        android:textSize="@dimen/_19ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backArrow" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/open_sans_regular"
+        android:gravity="center"
+        android:text="If you have any question\nwe are happy to help"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView12"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView12"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView12" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnContactNumber"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/_65sdp"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView13"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView13"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView13"
+        app:srcCompat="@drawable/icon_contact_call" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPhoneNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/open_sans_regular"
+        android:gravity="center"
+        android:text="+923463752125"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="@+id/btnContactNumber"
+        app:layout_constraintStart_toStartOf="@+id/btnContactNumber"
+        app:layout_constraintTop_toBottomOf="@+id/btnContactNumber" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnContactEmail"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/_35sdp"
+        app:layout_constraintEnd_toEndOf="@+id/tvPhoneNum"
+        app:layout_constraintStart_toStartOf="@+id/tvPhoneNum"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNum"
+        app:srcCompat="@drawable/icon_contact_email" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/open_sans_medium"
+        android:gravity="center"
+        android:text="husnainalirafique125@gmail.com"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="@+id/btnContactEmail"
+        app:layout_constraintStart_toStartOf="@+id/btnContactEmail"
+        app:layout_constraintTop_toBottomOf="@+id/btnContactEmail" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_75sdp"
+        android:fontFamily="@font/open_sans_semi_bold"
+        android:gravity="center"
+        android:text="Get Connected"
+        android:textColor="#282828"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="@+id/tvEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/tvEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmailAddress" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"
+        app:layout_constraintStart_toStartOf="@+id/appCompatTextView15"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView15">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnLinkedIn"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icon_linkedin" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icon_facebook" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icon_twitter" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icon_instagram" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnWhatsapp"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/icon_whatsapp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

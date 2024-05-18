@@ -129,6 +129,8 @@ class ProfileRepository @Inject constructor(
 
                 _fetchVehicles.value = DataState.Success(vehiclesList)
             }
+
+
     }
 
 }

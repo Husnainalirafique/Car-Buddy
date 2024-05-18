@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.carbuddy.R
+import com.example.carbuddy.data.models.ModelUser
+import com.example.carbuddy.data.models.vehicles.ModelVehicle
 import com.example.carbuddy.databinding.ActivityAfterAuthBinding
 import com.example.carbuddy.ui.fragments.home.HomeFragment
 import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
@@ -36,7 +38,7 @@ class AfterAuthActivity : AppCompatActivity() {
         binding.bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
 
         navHostFragment.findNavController().addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.homeFragment || destination.id == R.id.bookingsFragment || destination.id == R.id.inboxFragment || destination.id == R.id.profileFragment) {
+            if (destination.id == R.id.homeFragment || destination.id == R.id.bookingsFragment || destination.id == R.id.profileFragment) {
                 binding.bottomNavigationView.visible()
                 window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
             } else {

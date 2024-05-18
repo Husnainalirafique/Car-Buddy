@@ -8,26 +8,34 @@
     <fragment
         android:id="@+id/logInFragment"
         android:name="com.example.carbuddy.ui.fragments.auth.login.LogInFragment"
-        tools:layout="@layout/fragment_log_in"
-        android:label="LogInFragment" >
+        android:label="LogInFragment"
+        tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
             app:popUpTo="@id/logInFragment"
             app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.carbuddy.ui.fragments.auth.signup.SignUpFragment"
-        tools:layout="@layout/fragment_sign_up"
-        android:label="SignUpFragment" >
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_fillProfileFragment"
-            app:destination="@id/fillProfileFragment" />
+            app:destination="@id/fillProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/fillProfileFragment"
         android:name="com.example.carbuddy.ui.fragments.auth.fillprofile.FillProfileFragment"
-        tools:layout="@layout/fragment_fill_profile"
-        android:label="AuthUserInformationFragment" />
+        android:label="AuthUserInformationFragment"
+        tools:layout="@layout/fragment_fill_profile" />
 </navigation>

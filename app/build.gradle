@@ -47,9 +47,9 @@ kapt {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -57,7 +57,7 @@ dependencies {
     implementation 'com.google.devtools.ksp:symbol-processing-api:1.9.22-1.0.17'
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:32.8.0')
+    implementation platform('com.google.firebase:firebase-bom:33.0.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation "com.google.firebase:firebase-auth"
     implementation "com.google.firebase:firebase-firestore"
@@ -76,8 +76,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     //hilt
-    implementation 'com.google.dagger:hilt-android:2.50'
-    ksp 'com.google.dagger:hilt-compiler:2.50'
+    implementation 'com.google.dagger:hilt-android:2.51.1'
+    ksp 'com.google.dagger:hilt-compiler:2.51.1'
 
     //Responsiveness
     implementation 'com.intuit.ssp:ssp-android:1.1.0'

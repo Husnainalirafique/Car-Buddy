@@ -59,6 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvHey" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnBookmark"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="@dimen/_5sdp"
@@ -74,21 +75,21 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/bg_edittext"
             app:iconifiedByDefault="false"
-            app:queryHint="Search (e.g painter, name)"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgUser"
+            app:queryHint="Search (e.g painter, name)"
             app:searchIcon="@drawable/icon_search" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/popins_bold"
             android:text="Find Near You"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
-            android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintStart_toStartOf="@+id/searchView"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
@@ -110,7 +111,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/mechanic" />
+                app:srcCompat="@drawable/img_mechanic_home" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -129,9 +130,9 @@
             android:id="@+id/btnFuel"
             android:layout_width="@dimen/_55sdp"
             android:layout_height="@dimen/_55sdp"
-            android:background="@drawable/bg_services_round"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/bg_services_round"
             app:layout_constraintBottom_toBottomOf="@+id/btnMechanics"
             app:layout_constraintEnd_toStartOf="@+id/btnServiceShops"
             app:layout_constraintHorizontal_bias="0.5"
@@ -151,10 +152,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/open_sans_regular"
             android:text="Fuel"
             android:textColor="@color/black"
-            android:layout_marginTop="@dimen/_5sdp"
             app:layout_constraintEnd_toEndOf="@+id/btnFuel"
             app:layout_constraintStart_toStartOf="@+id/btnFuel"
             app:layout_constraintTop_toBottomOf="@+id/btnFuel" />
@@ -183,10 +184,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/open_sans_regular"
             android:text="Service Shops"
             android:textColor="@color/black"
-            android:layout_marginTop="@dimen/_5sdp"
             app:layout_constraintEnd_toEndOf="@+id/btnServiceShops"
             app:layout_constraintStart_toStartOf="@+id/btnServiceShops"
             app:layout_constraintTop_toBottomOf="@+id/btnServiceShops" />
@@ -206,9 +207,9 @@
             android:id="@+id/appCompatTextView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/popins_bold"
-            android:text="Services"
             android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/popins_bold"
+            android:text="Mechanics"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toStartOf="parent"
@@ -220,10 +221,10 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_2sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_service"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4"
+            tools:listitem="@layout/item_service" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

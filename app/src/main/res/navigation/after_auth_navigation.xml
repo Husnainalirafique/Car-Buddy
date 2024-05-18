@@ -8,18 +8,49 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.carbuddy.ui.fragments.home.HomeFragment"
-        tools:layout="@layout/fragment_home"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_bookMarkFragment"
+            app:destination="@id/bookMarkFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_mechanicsFragment"
+            app:destination="@id/mechanicsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_fuelFragment"
+            app:destination="@id/fuelFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_serviceShopsFragment"
+            app:destination="@id/serviceShopsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_homeFragment_to_vendorProfileFragment"
+            app:destination="@id/vendorProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
     <fragment
         android:id="@+id/bookingsFragment"
         android:name="com.example.carbuddy.ui.fragments.booking.BookingsFragment"
         android:label="fragment_bookings"
         tools:layout="@layout/fragment_bookings" />
-    <fragment
-        android:id="@+id/inboxFragment"
-        android:name="com.example.carbuddy.ui.fragments.inbox.InboxFragment"
-        android:label="fragment_inbox"
-        tools:layout="@layout/fragment_inbox" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.carbuddy.ui.fragments.profile.ProfileFragment"
@@ -27,10 +58,25 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_profileFragment_to_myVehicleFragment"
-            app:destination="@id/myVehicleFragment" />
+            app:destination="@id/myVehicleFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_profileFragment_to_contactUsFragment"
+            app:destination="@id/contactUsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -44,11 +90,69 @@
         tools:layout="@layout/fragment_my_vehicle">
         <action
             android:id="@+id/action_myVehicleFragment_to_addVehicleFragment"
-            app:destination="@id/addVehicleFragment" />
+            app:destination="@id/addVehicleFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
         android:id="@+id/addVehicleFragment"
         android:name="com.example.carbuddy.ui.fragments.profile.myvehicles.AddVehicleFragment"
         android:label="fragment_add_vehicle"
         tools:layout="@layout/fragment_add_vehicle" />
+    <fragment
+        android:id="@+id/bookMarkFragment"
+        android:name="com.example.carbuddy.ui.fragments.bookmarks.BookMarkFragment"
+        android:label="fragment_book_mark"
+        tools:layout="@layout/fragment_book_mark">
+        <action
+            android:id="@+id/action_bookMarkFragment_to_vendorProfileFragment"
+            app:destination="@id/vendorProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/mechanicsFragment"
+        android:name="com.example.carbuddy.ui.fragments.services.mechanics.MechanicsFragment"
+        android:label="fragment_mechanics"
+        tools:layout="@layout/fragment_mechanics">
+        <action
+            android:id="@+id/action_mechanicsFragment_to_vendorProfileFragment"
+            app:destination="@id/vendorProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/fuelFragment"
+        android:name="com.example.carbuddy.ui.fragments.services.fuel.FuelFragment"
+        android:label="fragment_fuel"
+        tools:layout="@layout/fragment_fuel" />
+    <fragment
+        android:id="@+id/serviceShopsFragment"
+        android:name="com.example.carbuddy.ui.fragments.services.serviceshops.ServiceShopsFragment"
+        android:label="fragment_service_shops"
+        tools:layout="@layout/fragment_service_shops">
+        <action
+            android:id="@+id/action_serviceShopsFragment_to_vendorProfileFragment"
+            app:destination="@id/vendorProfileFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/vendorProfileFragment"
+        android:name="com.example.carbuddy.ui.fragments.vendorProfile.VendorProfileFragment"
+        android:label="fragment_vendor_profile"
+        tools:layout="@layout/fragment_vendor_profile" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.example.carbuddy.ui.fragments.profile.contactUs.ContactUsFragment"
+        android:label="fragment_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
 </navigation>

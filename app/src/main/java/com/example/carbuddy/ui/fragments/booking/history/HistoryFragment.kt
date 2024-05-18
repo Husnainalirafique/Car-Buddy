@@ -1,15 +1,14 @@
-package com.example.carbuddy.ui.fragments.inbox
+package com.example.carbuddy.ui.fragments.booking.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.carbuddy.R
-import com.example.carbuddy.databinding.FragmentInboxBinding
+import com.example.carbuddy.databinding.FragmentHistoryBinding
 
-class InboxFragment : Fragment() {
-    private var _binding: FragmentInboxBinding? = null
+class HistoryFragment : Fragment() {
+    private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +16,7 @@ class InboxFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInboxBinding.inflate(inflater, container, false)
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         inIt()
         return binding.root
     }

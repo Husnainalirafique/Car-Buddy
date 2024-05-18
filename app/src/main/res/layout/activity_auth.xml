@@ -24,6 +24,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/auth_navigation" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

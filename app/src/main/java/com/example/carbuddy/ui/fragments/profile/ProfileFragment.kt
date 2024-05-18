@@ -68,6 +68,9 @@ class ProfileFragment : Fragment() {
         binding.btnPickPhoto.setOnClickListener {
             openPhotoPicker()
         }
+        binding.btnContactUs.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_contactUsFragment)
+        }
     }
 
     private fun logOut() {

@@ -49,9 +49,6 @@ class LogInFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        binding.backArrow.setOnClickListener {
-            findNavController().popBackStack()
-        }
         binding.btnSignIn.setOnClickListener {
             if (isValid()) {
                 login()
@@ -71,7 +68,6 @@ class LogInFragment : Fragment() {
         vm.loginStatus.observe(viewLifecycleOwner) { dataState ->
             when (dataState) {
                 is DataState.Success -> {
-                    toast("Loged In successfully")
                     dismissProgressDialog()
                     startActivity(AfterAuthActivity::class.java)
                     requireActivity().finish()
