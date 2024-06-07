@@ -2,8 +2,6 @@ package com.example.carbuddy.ui.fragments.auth
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
-
 import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import com.example.carbuddy.data.models.ModelUser
 import com.example.carbuddy.preferences.PreferenceManager
 import com.example.carbuddy.utils.DataState
-import com.example.carbuddy.utils.DateTimeUtils
 import com.example.carbuddy.utils.ImageUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -38,6 +35,8 @@ class VmAuth @Inject constructor(
     private val _loginStatus = MutableLiveData<DataState<Nothing>>()
     val loginStatus: LiveData<DataState<Nothing>> = _loginStatus
 
+    private val _test = MutableLiveData<String>()
+    val test: LiveData<String> = _test
 
     //Signup flow
     suspend fun signUpWithEmailPass(user: ModelUser) {
@@ -93,6 +92,7 @@ class VmAuth @Inject constructor(
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 getUserFromDbAndSaveToPref()
+                _loginStatus.value = DataState.Success()
             }
             .addOnFailureListener { exception ->
                 if (exception is FirebaseAuthInvalidCredentialsException) {

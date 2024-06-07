@@ -147,12 +147,25 @@
     </fragment>
     <fragment
         android:id="@+id/vendorProfileFragment"
-        android:name="com.example.carbuddy.ui.fragments.vendorProfile.VendorProfileFragment"
+        android:name="com.example.carbuddy.ui.fragments.vendorProfile.vendor_profile.VendorProfileFragment"
         android:label="fragment_vendor_profile"
-        tools:layout="@layout/fragment_vendor_profile" />
+        tools:layout="@layout/fragment_vendor_profile">
+        <action
+            android:id="@+id/action_vendorProfileFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
     <fragment
         android:id="@+id/contactUsFragment"
         android:name="com.example.carbuddy.ui.fragments.profile.contactUs.ContactUsFragment"
         android:label="fragment_contact_us"
         tools:layout="@layout/fragment_contact_us" />
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.example.carbuddy.ui.fragments.vendorProfile.comments.CommentsFragment"
+        android:label="fragment_comments"
+        tools:layout="@layout/fragment_comments" />
 </navigation>

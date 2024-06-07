@@ -6,14 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
-import com.example.carbuddy.data.models.service.ModelService
+import com.example.carbuddy.data.models.ModelVendorProfile
 import com.example.carbuddy.databinding.FragmentHomeBinding
 import com.example.carbuddy.preferences.PreferenceManager
 import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
+import com.example.carbuddy.utils.DataState
 import com.example.carbuddy.utils.Glide
+import com.example.carbuddy.utils.ProgressDialogUtil.dismissProgressDialog
+import com.example.carbuddy.utils.ProgressDialogUtil.showProgressDialog
 import com.example.carbuddy.utils.gone
+import com.example.carbuddy.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -22,7 +27,8 @@ class HomeFragment :Fragment() {
     private lateinit var binding: FragmentHomeBinding
     @Inject
     lateinit var preferenceManager: PreferenceManager
-    private lateinit var adapterServices: AdapterServices
+    private val vmHome: VmHome by viewModels()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, null, false)
         inIt()
@@ -30,8 +36,8 @@ class HomeFragment :Fragment() {
     }
 
     private fun inIt() {
+        setUpObserver()
         setUpProfileImage()
-        setUpServicesAdapter()
         setUpSearch()
         setOnClickListener()
         goBack()
@@ -50,9 +56,37 @@ class HomeFragment :Fragment() {
         binding.btnServiceShops.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_serviceShopsFragment)
         }
+    }
+
+    private fun setUpObserver() {
+        vmHome.mechanicsProfiles.observe(viewLifecycleOwner) {
+            when (it) {
+                is DataState.Success -> {
+                    val listProfiles = it.data
+                    if (listProfiles != null) {
+                        setUpVendorsAdapter(listProfiles)
+                    }
+                    dismissProgressDialog()
+                }
+
+                is DataState.Error -> {
+                    toast(it.errorMessage)
+                    dismissProgressDialog()
+                }
+
+                is DataState.Loading -> {
+                    showProgressDialog()
+                }
+            }
+        }
+    }
+
+    private fun setUpVendorsAdapter(listVendors: List<ModelVendorProfile>) {
+        val adapterServices = AdapterServices(listVendors)
+        binding.rvHomeServices.adapter = adapterServices
         adapterServices.itemClickListener {
             val bundle = Bundle()
-            bundle.putString("name", it.nameProvider)
+            bundle.putParcelable("vendorProfile", it)
             findNavController().navigate(R.id.action_homeFragment_to_vendorProfileFragment, bundle)
         }
     }
@@ -77,14 +111,6 @@ class HomeFragment :Fragment() {
                 return true
             }
         })
-    }
-
-    private fun setUpServicesAdapter() {
-        val servicesList = listOf(
-            ModelService(R.drawable.img, "Husnain Rafique", "10km away", "Painter"),
-        )
-        adapterServices = AdapterServices(servicesList)
-        binding.rvHomeServices.adapter = adapterServices
     }
 
     private fun goBack() {

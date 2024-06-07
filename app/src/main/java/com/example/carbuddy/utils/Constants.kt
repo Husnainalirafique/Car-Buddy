@@ -3,6 +3,7 @@ package com.example.carbuddy.utils
 object Constants {
     const val ROOM_DB_NAME = "roomDb"
     const val KEY_EMAIL = "userEmail"
+    const val KEY_PROVIDER_UID = "providerUid"
     const val KEY_PASSWORD = "userPassword"
 
     /*........ Date/Time Format Patterns ........*/

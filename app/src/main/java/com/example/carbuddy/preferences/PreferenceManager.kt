@@ -30,4 +30,12 @@ class PreferenceManager @Inject constructor(@ApplicationContext private val cont
         return gson.fromJson(json, ModelUser::class.java)
     }
 
+    fun isProfileLiked(profileId: String): Boolean {
+        return myPref.getBoolean(profileId, false)
+    }
+
+    fun setProfileLiked(profileId: String, isLiked: Boolean) {
+        myPref.edit().putBoolean(profileId, isLiked).apply()
+    }
+
 }
