@@ -78,13 +78,7 @@ class CommentsFragment : Fragment() {
                 is DataState.Loading -> {}
 
                 is DataState.Success -> {
-                    it.data?.let { commentsList ->
-                        val state = binding.rvComments.layoutManager?.onSaveInstanceState()
-                        binding.rvComments.adapter = AdapterComments(commentsList) { comment ->
-                            vm.deleteComment(vendorUid, comment.docId)
-                        }
-                        binding.rvComments.layoutManager?.onRestoreInstanceState(state)
-                    }
+                    it.data?.let { commentsList -> setUpCommentAdapter(commentsList) }
                 }
 
                 is DataState.Error -> {
@@ -93,6 +87,18 @@ class CommentsFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun setUpCommentAdapter(commentsList: List<Comment>) {
+        val state = binding.rvComments.layoutManager?.onSaveInstanceState()
+        val adapter = AdapterComments(commentsList) { comment ->
+            vm.deleteComment(vendorUid, comment.docId)
+        }
+        binding.rvComments.apply {
+            setHasFixedSize(true)
+            this.adapter = adapter
+            layoutManager?.onRestoreInstanceState(state)
+        }
     }
 
     private fun setOnClickListener() {

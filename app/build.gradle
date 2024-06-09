@@ -102,6 +102,7 @@ dependencies {
     //Circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //lottie
     implementation "com.airbnb.android:lottie:6.4.0"
 
     //Gson

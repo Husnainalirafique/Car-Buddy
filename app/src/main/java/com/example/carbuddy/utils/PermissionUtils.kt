@@ -22,20 +22,22 @@ object PermissionUtils{
 
     fun handlePermissions(activity: Activity, permissions: Array<String>, requestCode: Int): Boolean {
         val sharedPreferences = activity.getSharedPreferences(PERMISSION_PREF_NAME, Context.MODE_PRIVATE)
-        val permissionRequestCount = sharedPreferences.getInt(PERMISSION_REQUEST_COUNT_KEY, 0)
-        var count = 0
-        return if (areAllPermissionsGranted(activity, permissions)) { true }
-        else {
-            if (permissionRequestCount < MAX_PERMISSION_REQUESTS){
-                requestPermissions(activity, permissions, requestCode)
-                sharedPreferences.edit().putInt(PERMISSION_REQUEST_COUNT_KEY, ++count).apply()
-            } else {
-                Dialogs.permissionAlertDialog(
-                    activity,
-                    PERMISSION_ALERT_TEXT
-                ) { openAppSettings(activity) }
+        var permissionRequestCount = sharedPreferences.getInt(PERMISSION_REQUEST_COUNT_KEY, 0)
+        return when {
+            areAllPermissionsGranted(activity, permissions) -> true
+            else -> {
+                if (permissionRequestCount < MAX_PERMISSION_REQUESTS) {
+                    sharedPreferences.edit()
+                        .putInt(PERMISSION_REQUEST_COUNT_KEY, ++permissionRequestCount).apply()
+                    requestPermissions(activity, permissions, requestCode)
+                } else {
+                    Dialogs.permissionAlertDialog(
+                        activity,
+                        PERMISSION_ALERT_TEXT
+                    ) { openAppSettings(activity) }
+                }
+                false
             }
-            false
         }
     }
 }

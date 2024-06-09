@@ -15,6 +15,11 @@ class AdapterComments(
     private val onDeleteClick: (Comment) -> Unit
 ) :
     RecyclerView.Adapter<AdapterComments.ViewHolder>() {
+
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemCommentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)

@@ -2,18 +2,15 @@
 
 package com.example.carbuddy.ui.fragments.vendorProfile.vendor_profile
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.Location
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -35,9 +32,13 @@ import com.example.carbuddy.utils.invisible
 import com.example.carbuddy.utils.toast
 import com.example.carbuddy.utils.visible
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
+import com.google.android.gms.location.SettingsClient
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -50,8 +51,8 @@ class VendorProfileFragment : Fragment() {
     private val viewModel: VmVendor by viewModels()
     private var totalLikes: Long = 0
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var lastLocation: Task<Location>
-
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
     @Inject
     lateinit var prefs: PreferenceManager
     private lateinit var vendorUid: String
@@ -63,28 +64,14 @@ class VendorProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentVendorProfileBinding.inflate(inflater, container, false)
-
-        inIt()
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            getCurrentLocationAndOpenMap()
-        } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                15
-            )
-        }
-
+        inIt()
         return binding.root
     }
 
     private fun inIt() {
+        initLocationRequest()
+        setUpLocationCallback()
         setOnClickListener()
         getAndSetDataForVendor()
         setUpLikeButton()
@@ -143,28 +130,6 @@ class VendorProfileFragment : Fragment() {
                 bundle
             )
         }
-    }
-
-    private fun openMapAndGiveDirections(lat: Double, lng: Double) {
-        lastLocation.addOnSuccessListener { location ->
-            // Check if location is not null
-            location?.let {
-                val currentLatLng = LatLng(it.latitude, it.longitude)
-                val destinationLatLng = LatLng(lat, lng)
-
-                // Construct URI for directions
-                val uri =
-                    "http://maps.google.com/maps?saddr=${currentLatLng.latitude},${currentLatLng.longitude}&daddr=${destinationLatLng.latitude},${destinationLatLng.longitude}"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-                intent.setPackage("com.google.android.apps.maps")
-                startActivity(intent)
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getCurrentLocationAndOpenMap() {
-        lastLocation = fusedLocationClient.lastLocation
     }
 
     private fun setUpLikeButton() {
@@ -234,6 +199,77 @@ class VendorProfileFragment : Fragment() {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse("https://wa.me/$number")
         startActivity(intent)
+    }
+
+    //Getting user current location
+    @SuppressLint("MissingPermission")
+    private fun openMapAndGiveDirections(lat: Double, lng: Double) {
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            location?.let {
+                val currentLatLng = LatLng(it.latitude, it.longitude)
+                val destinationLatLng = LatLng(lat, lng)
+
+                // Construct URI for directions
+                val uri =
+                    "http://maps.google.com/maps?saddr=${currentLatLng.latitude},${currentLatLng.longitude}&daddr=${destinationLatLng.latitude},${destinationLatLng.longitude}"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                intent.setPackage("com.google.android.apps.maps")
+                startActivity(intent)
+            } ?: run {
+                Toast.makeText(context, "Unable to get current location", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(context, "Failed to get current location", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun initLocationRequest() {
+        locationRequest = LocationRequest.create().apply {
+            interval = 10000
+            fastestInterval = 5000
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+    }
+
+    private fun setUpLocationCallback() {
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(p0: LocationResult) {
+
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates() {
+        val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+        val client: SettingsClient = LocationServices.getSettingsClient(requireActivity())
+        val task = client.checkLocationSettings(builder.build())
+
+        task.addOnSuccessListener {
+            fusedLocationClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                null
+            )
+        }
+
+        task.addOnFailureListener {
+            Toast.makeText(context, "Please enable location settings", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startLocationUpdates()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdates()
     }
 
     override fun onDestroyView() {
