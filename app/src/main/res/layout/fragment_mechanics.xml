@@ -31,14 +31,61 @@
         app:layout_constraintTop_toTopOf="@+id/backArrow"
         app:layout_constraintVertical_bias="0.75" />
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_42sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/bg_edittext"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backArrow"
+        app:queryHint="Looking for something..."
+        app:searchIcon="@drawable/icon_search" />
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/rvHomeServices"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginVertical="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView11" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        tools:listitem="@layout/item_service" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/layoutShimmer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_service_shimmer_layout" />
+
+            <include layout="@layout/item_service_shimmer_layout" />
+
+            <include layout="@layout/item_service_shimmer_layout" />
+
+            <include layout="@layout/item_service_shimmer_layout" />
+
+            <include layout="@layout/item_service_shimmer_layout" />
+
+            <include layout="@layout/item_service_shimmer_layout" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

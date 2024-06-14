@@ -18,5 +18,6 @@ data class ModelVendorProfile(
     val availability: String = "",
     val locationNameInCity: String = "",
     val addressFromMap: String = "",
-    val vendorUid: String = ""
+    val vendorUid: String = "",
+    val fcmToken: String = ""
 ) : Parcelable

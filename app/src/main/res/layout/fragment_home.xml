@@ -28,6 +28,7 @@
             android:id="@+id/pgProfileImage"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/imgUser"
             app:layout_constraintEnd_toEndOf="@+id/imgUser"
             app:layout_constraintStart_toStartOf="@+id/imgUser"
@@ -220,6 +221,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_2sdp"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -239,6 +241,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/layoutShimmer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_service_shimmer_layout" />
+
+                <include layout="@layout/item_service_shimmer_layout" />
+
+                <include layout="@layout/item_service_shimmer_layout" />
+
+                <include layout="@layout/item_service_shimmer_layout" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -32,8 +32,9 @@ class BookingsFragment : Fragment() {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Ongoing"
-                1 -> tab.text = "History"
+                0 -> tab.text = "Pending"
+                1 -> tab.text = "Ongoing"
+                2 -> tab.text = "History"
             }
         }.attach()
     }

@@ -1,4 +1,4 @@
-package com.example.carbuddy.ui.fragments.booking.pending
+package com.example.carbuddy.ui.fragments.booking
 
 import android.os.Bundle
 import android.view.LayoutInflater

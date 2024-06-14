@@ -11,18 +11,18 @@
         tools:context=".ui.activities.SplashActivity">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_50sdp"
             android:fontFamily="@font/rubik_burned_regular"
             android:text="Car Buddy"
             android:textColor="@color/white"
             android:textSize="@dimen/_35ssp"
             android:textStyle="bold"
-            android:layout_marginBottom="@dimen/_50sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

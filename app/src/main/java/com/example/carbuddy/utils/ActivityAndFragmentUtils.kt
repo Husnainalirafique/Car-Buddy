@@ -3,12 +3,8 @@ package com.example.carbuddy.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -16,8 +12,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 
 fun View.visible() {
     visibility = View.VISIBLE
@@ -29,6 +23,12 @@ fun View.gone() {
 
 fun View.invisible() {
     visibility = View.INVISIBLE
+}
+
+inline fun View.onClick(crossinline onClick: (View) -> Unit) {
+    setOnClickListener {
+        onClick(it)
+    }
 }
 
 fun TextView.setTimestamp(timestamp: Long) {

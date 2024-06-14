@@ -157,6 +157,9 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out" />
+        <action
+            android:id="@+id/action_vendorProfileFragment_to_mechanicBookingDetailsFragment"
+            app:destination="@id/mechanicBookingDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactUsFragment"
@@ -168,4 +171,9 @@
         android:name="com.example.carbuddy.ui.fragments.vendorProfile.comments.CommentsFragment"
         android:label="fragment_comments"
         tools:layout="@layout/fragment_comments" />
+    <fragment
+        android:id="@+id/mechanicBookingDetailsFragment"
+        android:name="com.example.carbuddy.ui.fragments.bookingFlow.MechanicBookingDetailsFragment"
+        android:label="fragment_mechanic_booking_details"
+        tools:layout="@layout/fragment_mechanic_booking_details" />
 </navigation>

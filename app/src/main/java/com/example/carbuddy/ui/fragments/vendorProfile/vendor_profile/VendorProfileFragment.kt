@@ -29,6 +29,7 @@ import com.example.carbuddy.utils.MapUtils
 import com.example.carbuddy.utils.ProgressDialogUtil.dismissProgressDialog
 import com.example.carbuddy.utils.ProgressDialogUtil.showProgressDialog
 import com.example.carbuddy.utils.invisible
+import com.example.carbuddy.utils.onClick
 import com.example.carbuddy.utils.toast
 import com.example.carbuddy.utils.visible
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -100,6 +101,15 @@ class VendorProfileFragment : Fragment() {
             binding.tvShopName.text = it.shopName
             binding.tvAvailablity.text = it.availability
             vendorUid = it.vendorUid
+
+            val bundleBook = Bundle()
+            bundleBook.putParcelable("vendorProfile", it)
+            binding.btnBookNow.onClick {
+                findNavController().navigate(
+                    R.id.action_vendorProfileFragment_to_mechanicBookingDetailsFragment,
+                    bundleBook
+                )
+            }
 
             val (latitude, longitude) = MapUtils.extractLatLong(it.addressFromMap)!!
             binding.btnShowMap.setOnClickListener {
