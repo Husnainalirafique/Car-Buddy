@@ -1,15 +1,8 @@
 package com.example.carbuddy.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import com.example.carbuddy.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.carbuddy.databinding.ActivityAuthBinding
-import com.example.carbuddy.utils.BackPressedExtensions
-import com.example.carbuddy.utils.BackPressedExtensions.goBackPressed
-import com.example.carbuddy.utils.Spanny
 import com.example.carbuddy.utils.StatusBarUtils
 import dagger.hilt.android.AndroidEntryPoint
 

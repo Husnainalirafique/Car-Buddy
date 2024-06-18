@@ -1,4 +1,4 @@
-package com.example.carbuddy.data.models
+package com.example.carbuddy.data.models.vendor
 
 import android.os.Parcelable
 import androidx.annotation.Keep

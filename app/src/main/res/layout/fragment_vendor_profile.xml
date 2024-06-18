@@ -445,18 +445,6 @@
         </LinearLayout>
 
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnAddToBookmark"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/_22sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-            app:srcCompat="@drawable/icon_bookmark" />
-
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLikes"
             android:layout_width="wrap_content"

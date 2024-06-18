@@ -1,4 +1,4 @@
-package com.example.carbuddy.data
+package com.example.carbuddy.data.remote.models
 
 data class Message(
     val message: NotificationMessage

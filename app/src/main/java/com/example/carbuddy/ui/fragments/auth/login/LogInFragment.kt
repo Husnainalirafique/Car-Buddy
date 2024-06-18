@@ -1,5 +1,7 @@
 package com.example.carbuddy.ui.fragments.auth.login
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -46,8 +48,19 @@ class LogInFragment : Fragment() {
         setOnClickListeners()
         backPressed()
         setUpObserver()
+        requestPermission()
     }
 
+    private fun requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val permissions = arrayOf(
+                Manifest.permission.POST_NOTIFICATIONS,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+            requireActivity().requestPermissions(permissions, 10)
+        }
+    }
     private fun setOnClickListeners() {
         binding.btnSignIn.setOnClickListener {
             if (isValid()) {

@@ -3,7 +3,7 @@ package com.example.carbuddy.ui.fragments.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carbuddy.data.models.ModelVendorProfile
+import com.example.carbuddy.data.models.vendor.ModelVendorProfile
 import com.example.carbuddy.utils.DataState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

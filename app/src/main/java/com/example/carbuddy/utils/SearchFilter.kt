@@ -38,7 +38,7 @@ class SearchFilter<T>(
     }
 
     override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-        val filteredList = results?.values as? List<T> ?: return
+        val filteredList = results?.values as? List<*> ?: return
         val setItemsMethod = findSetItemsMethod(adapter)
         setItemsMethod?.invoke(adapter, filteredList)
     }

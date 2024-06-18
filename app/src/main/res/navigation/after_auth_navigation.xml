@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookingsFragment"
-        android:name="com.example.carbuddy.ui.fragments.booking.BookingsFragment"
+        android:name="com.example.carbuddy.ui.fragments.bookings.BookingsFragment"
         android:label="fragment_bookings"
         tools:layout="@layout/fragment_bookings" />
     <fragment

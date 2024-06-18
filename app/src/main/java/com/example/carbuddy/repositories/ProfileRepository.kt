@@ -3,10 +3,9 @@ package com.example.carbuddy.repositories
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.carbuddy.data.models.ModelUser
+import com.example.carbuddy.data.models.user.ModelUser
 import com.example.carbuddy.data.models.vehicles.ModelVehicle
 import com.example.carbuddy.preferences.PreferenceManager
 import com.example.carbuddy.utils.DataState
@@ -117,20 +116,15 @@ class ProfileRepository @Inject constructor(
                     return@addSnapshotListener
                 }
 
-                val vehiclesList = mutableListOf<ModelVehicle>()
-                for (data in value?.documents!!) {
-                    val vehicle = data.toObject(ModelVehicle::class.java)
-                    if (vehicle != null) {
-                        val docId = data.id
-                        vehicle.docId = docId
-                        vehiclesList.add(vehicle)
+                if (value != null) {
+                    val vehicles = value.documents.mapNotNull {
+                        it.toObject(ModelVehicle::class.java)
                     }
+                    _fetchVehicles.value = DataState.Success(vehicles)
+                } else {
+                    _fetchVehicles.value = DataState.Error("No data found")
                 }
-
-                _fetchVehicles.value = DataState.Success(vehiclesList)
             }
-
-
     }
 
 }

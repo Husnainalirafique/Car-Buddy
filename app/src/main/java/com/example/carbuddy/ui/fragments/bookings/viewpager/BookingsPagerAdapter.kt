@@ -1,11 +1,11 @@
-package com.example.carbuddy.ui.fragments.booking.viewpager
+package com.example.carbuddy.ui.fragments.bookings.viewpager
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.carbuddy.ui.fragments.booking.PendingFragment
-import com.example.carbuddy.ui.fragments.booking.history.HistoryFragment
-import com.example.carbuddy.ui.fragments.booking.pending.OngoingFragment
+import com.example.carbuddy.ui.fragments.bookings.history.HistoryFragment
+import com.example.carbuddy.ui.fragments.bookings.ongoing.OngoingFragment
+import com.example.carbuddy.ui.fragments.bookings.pending.PendingFragment
 
 class BookingsPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {

@@ -1,15 +1,14 @@
 package com.example.carbuddy.ui.fragments.profile.editprofile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.carbuddy.R
-import com.example.carbuddy.data.models.ModelUser
+import com.example.carbuddy.data.models.user.ModelUser
 import com.example.carbuddy.databinding.FragmentEditProfileBinding
 import com.example.carbuddy.preferences.PreferenceManager
 import com.example.carbuddy.ui.fragments.profile.VmProfile
@@ -94,16 +93,20 @@ class EditProfileFragment : Fragment() {
         val dateOfBirth = etDob.text.toString().trim()
         val phoneNumber = etPhoneNum.text.toString().trim()
         val address = etAddress.text.toString().trim()
-        val user = ModelUser(
-            userEmail,
-            userPassword,
-            fullName,
-            dateOfBirth,
-            phoneNumber,
-            address,
-            profileImgUri
-        )
-        vmProfile.updateUser(user)
+        val userFcmToken = preferenceManager.getUserData()?.fcmToken
+        if (userFcmToken != null) {
+            val user = ModelUser(
+                userEmail,
+                userPassword,
+                fullName,
+                dateOfBirth,
+                phoneNumber,
+                address,
+                profileImgUri,
+                userFcmToken
+            )
+            vmProfile.updateUser(user)
+        }
     }
 
     private fun getUserFromPrefAndSet() {

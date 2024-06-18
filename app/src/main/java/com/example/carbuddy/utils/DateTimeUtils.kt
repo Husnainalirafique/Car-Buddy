@@ -1,8 +1,6 @@
 package com.example.carbuddy.utils
 
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -11,6 +9,11 @@ object DateTimeUtils {
     private const val PATTERN_DATE_OF_BIRTH = "MMM, dd, yyyy"
     fun formatHoursMinutes(timestamp: Long): String =
         SimpleDateFormat(Constants.TIME_FORMAT_H_MM_A, Locale.getDefault()).format(timestamp)
+
+    fun forBookingDateAndTime(timestamp: Long): String {
+        val dateFormat = SimpleDateFormat("MMM dd, yyyy | hh:mm a", Locale.getDefault())
+        return dateFormat.format(Date(timestamp))
+    }
 
     fun formatCompleteDateAndTime(): String {
         val calendar = Calendar.getInstance()

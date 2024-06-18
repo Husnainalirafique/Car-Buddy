@@ -1,4 +1,4 @@
-package com.example.carbuddy.data.models
+package com.example.carbuddy.data.models.user
 
 data class ModelUser(
     val email: String,
@@ -8,7 +8,8 @@ data class ModelUser(
     val phoneNumber: String,
     val address: String,
     var profileImageUri: String,
+    val fcmToken: String,
     var docId: String = ""
 ) {
-    constructor() : this("", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "", "")
 }

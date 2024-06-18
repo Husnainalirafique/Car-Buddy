@@ -16,7 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
-import com.example.carbuddy.data.models.ModelVendorProfile
+import com.example.carbuddy.data.models.vendor.ModelVendorProfile
 import com.example.carbuddy.databinding.FragmentVendorProfileBinding
 import com.example.carbuddy.preferences.PreferenceManager
 import com.example.carbuddy.ui.fragments.vendorProfile.viewmodels.VmVendor

@@ -1,4 +1,4 @@
-package com.example.carbuddy.ui.fragments.booking
+package com.example.carbuddy.ui.fragments.bookings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.carbuddy.databinding.FragmentBookingsBinding
-import com.example.carbuddy.ui.fragments.booking.viewpager.BookingsPagerAdapter
+import com.example.carbuddy.ui.fragments.bookings.viewpager.BookingsPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class BookingsFragment : Fragment() {

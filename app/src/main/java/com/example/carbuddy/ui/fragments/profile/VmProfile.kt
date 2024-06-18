@@ -3,7 +3,7 @@ package com.example.carbuddy.ui.fragments.profile
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.carbuddy.data.models.ModelUser
+import com.example.carbuddy.data.models.user.ModelUser
 import com.example.carbuddy.data.models.vehicles.ModelVehicle
 import com.example.carbuddy.repositories.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

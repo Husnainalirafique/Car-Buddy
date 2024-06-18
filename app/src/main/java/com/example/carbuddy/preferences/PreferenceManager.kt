@@ -2,7 +2,7 @@ package com.example.carbuddy.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.carbuddy.data.models.ModelUser
+import com.example.carbuddy.data.models.user.ModelUser
 import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject

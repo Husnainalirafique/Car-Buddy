@@ -1,6 +1,6 @@
 package com.example.carbuddy.data.remote
 
-import com.example.carbuddy.data.Message
+import com.example.carbuddy.data.remote.models.Message
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body

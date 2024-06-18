@@ -1,26 +1,67 @@
 package com.example.carbuddy.ui.fragments.bookingFlow
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carbuddy.data.Message
-import com.example.carbuddy.data.NotificationData
-import com.example.carbuddy.data.NotificationMessage
+import androidx.lifecycle.viewModelScope
+import com.example.carbuddy.data.models.booking.ModelBookingData
+import com.example.carbuddy.data.models.vendor.ModelVendorProfile
 import com.example.carbuddy.data.remote.FcmApi
+import com.example.carbuddy.data.remote.models.Message
+import com.example.carbuddy.data.remote.models.NotificationData
+import com.example.carbuddy.data.remote.models.NotificationMessage
+import com.example.carbuddy.repositories.ProfileRepository
+import com.example.carbuddy.utils.DataState
 import com.example.carbuddy.utils.FcmAccessTokenManager
+import com.example.carbuddy.utils.withIoContext
+import com.example.carbuddy.utils.withMainContext
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @HiltViewModel
 class NotificationViewModel @Inject constructor(
+    private val db: FirebaseFirestore,
     private val firebaseApiService: FcmApi,
     private val accessTokenProvider: FcmAccessTokenManager,
+    private val profileRepository: ProfileRepository
 ) : ViewModel() {
 
-    suspend fun sendNotification(fcmToken: String, data: NotificationData) {
-        val accessToken = accessTokenProvider.getAccessToken()
+    private val _bookingStatus = MutableLiveData<DataState<Nothing>>()
+    val bookingStatus: LiveData<DataState<Nothing>> = _bookingStatus
 
+    val fetchVehicles = profileRepository.fetchVehicles
+
+    init {
+        fetchVehicles()
+    }
+
+    suspend fun saveBookingToDb(
+        bookingData: ModelBookingData,
+        vendor: ModelVendorProfile
+    ) {
+        try {
+            withMainContext { _bookingStatus.value = DataState.Loading }
+            db.collection("bookings")
+                .add(bookingData)
+                .await()
+
+            // If successful, send the notification on a background thread
+            withIoContext { sendNotification(vendor) }
+        } catch (e: Exception) {
+            withMainContext {
+                _bookingStatus.value = DataState.Error(e.localizedMessage ?: "Unknown error")
+            }
+        }
+    }
+
+    private suspend fun sendNotification(vendor: ModelVendorProfile) {
+        val accessToken = accessTokenProvider.getAccessToken()
+        val data = NotificationData("You got a new order 😍", "Hi ${vendor.fullName}")
         accessToken?.let { serverKey ->
-            val message = Message(NotificationMessage(fcmToken, data))
+            val message = Message(NotificationMessage(vendor.fcmToken, data))
 
             try {
                 val response = firebaseApiService.sendNotification(
@@ -29,19 +70,21 @@ class NotificationViewModel @Inject constructor(
                 )
 
                 if (response.isSuccessful) {
-                    Log.d(
-                        "Notification",
-                        "Notification sent successfully: ${response.body()?.string()}"
-                    )
+                    withMainContext { _bookingStatus.value = DataState.Success() }
                 } else {
-                    Log.e(
-                        "Notification",
-                        "Error sending notification: ${response.errorBody()?.string()}"
-                    )
+                    withMainContext {
+                        _bookingStatus.value = DataState.Error("Error Sending Notification")
+                    }
                 }
             } catch (e: Exception) {
-                Log.e("Notification", "Exception sending notification: $e")
+                withMainContext { _bookingStatus.value = DataState.Error(e.localizedMessage!!) }
             }
+        }
+    }
+
+    private fun fetchVehicles() {
+        viewModelScope.launch {
+            profileRepository.fetchVehicles()
         }
     }
 }

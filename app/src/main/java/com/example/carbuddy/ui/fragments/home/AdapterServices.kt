@@ -1,18 +1,18 @@
 package com.example.carbuddy.ui.fragments.home
 
 import android.annotation.SuppressLint
-import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carbuddy.data.models.ModelVendorProfile
+import com.example.carbuddy.data.models.vendor.ModelVendorProfile
 import com.example.carbuddy.databinding.ItemServiceBinding
 import com.example.carbuddy.utils.Glide
 import com.example.carbuddy.utils.MapUtils
 import com.example.carbuddy.utils.SearchFilter
 import com.example.carbuddy.utils.gone
 import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.SphericalUtil
 import java.util.Locale
 
 class AdapterServices(
@@ -93,18 +93,11 @@ class AdapterServices(
     }
 
     private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val startPoint = Location("locationA").apply {
-            latitude = lat1
-            longitude = lon1
-        }
-
-        val endPoint = Location("locationB").apply {
-            latitude = lat2
-            longitude = lon2
-        }
-
-        val distanceInMeters = startPoint.distanceTo(endPoint)
-        return distanceInMeters / 1000.toDouble() // Convert meters to kilometers
+        val distance = SphericalUtil.computeDistanceBetween(
+            LatLng(lat1, lon1),
+            LatLng(lat2, lon2)
+        )
+        return distance / 1000.toDouble() // Convert meters to kilometers
     }
 
 }

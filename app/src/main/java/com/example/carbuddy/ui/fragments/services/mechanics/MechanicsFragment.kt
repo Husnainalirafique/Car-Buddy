@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carbuddy.R
-import com.example.carbuddy.data.models.ModelVendorProfile
+import com.example.carbuddy.data.models.vendor.ModelVendorProfile
 import com.example.carbuddy.databinding.FragmentMechanicsBinding
 import com.example.carbuddy.ui.fragments.home.AdapterServices
 import com.example.carbuddy.ui.fragments.home.VmHome

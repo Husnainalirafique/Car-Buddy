@@ -59,16 +59,6 @@
             app:layout_constraintStart_toEndOf="@+id/imgUser"
             app:layout_constraintTop_toBottomOf="@+id/tvHey" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btnBookmark"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgUser"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgUser"
-            app:srcCompat="@drawable/icon_bookmark" />
-
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
@@ -230,17 +220,6 @@
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4"
             app:layout_constraintVertical_bias="1.0"
             tools:listitem="@layout/item_service" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:indeterminateDrawable="@drawable/bg_dialogue_progress"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/layoutShimmer"
